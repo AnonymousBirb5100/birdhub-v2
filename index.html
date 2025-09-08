@@ -98,6 +98,7 @@
         background-color: rgba(0, 0, 0, 0.2);
         border-radius: 25px;
         box-shadow: 0px 0px 30px black;
+        overflow: hidden;
       }
       .homeSection h1, .browseSection h1 {
         color: rgb(0, 132, 255);
@@ -107,27 +108,78 @@
         text-shadow: 0px 0px 5px royalblue;
       }
 
-      .gameButtonTrio {
-        display: flex;
+      /* Home Section Sections*/
+      .normalHomeSection h2 {
+        color: white;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 3vw;
+        text-align: center;
       }
-      .gameButtonTrio button {
+      .normalHomeSection {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        margin: 2vw;
+        padding: 2vw;
+        border-radius: 25px;
+      }
+      /* Spin effect */
+      @property --angle {
+        syntax: '<angle>';
+        inherits: false;
+        initial-value: 0deg;
+      }
+
+      .homeSectionGameButtons { /* This is on top of the current CSS below*/
+        border: 4px solid transparent;
+
+        /* Two backgrounds: solid center + gradient border */
+        background:
+          linear-gradient(white, white) padding-box,
+          conic-gradient(from var(--angle), black, aqua, black) border-box;
+
+        background-clip: padding-box, border-box;
+        background-origin: border-box;
+
+        /* Drive the angle */
+        --angle: 0deg;
+        animation: homeSectionButtonEffect 1s linear infinite;
+      }
+      
+
+      @keyframes homeSectionButtonEffect {
+        to { --angle: 360deg; }
+      }
+
+
+
+
+      .gameButtons {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .gameButtons button {
         display: flex;
         align-items: center;
+        position: relative;
         width: 25vw;
         height: 20vh;
         gap: 8px;
-        margin: 20px;
+        margin: 2vw;
         background-color: rgba(0, 0, 0, 0.5);
         border: none;
         padding: 10px;
         border-radius: 25px;
+        overflow: hidden;
+        cursor: pointer;
         transition: 0.3s ease;
       }
-      .gameButtonTrio button:hover {
+      .gameButtons button:hover {
         transform: translateY(-20px);
         box-shadow: 0px 20px 10px rgb(0, 191, 255);
       }
-      .gameButtonTrio img {
+      .gameButtons img {
         width: 7vw;
         height: 7vw;
         border-radius: 20px;
@@ -141,18 +193,56 @@
       }
       .gameButtonText h3 {
         color: rgb(0, 132, 255);
-        font-size: 2em;
-        line-height: 5px;
+        font-size: 2vw;
+        line-height: 0.5vw;
         text-align: left;
         transition: 0.3s ease;
       }
-      .gameButtonTrio button:hover h3 {
+      .gameButtons button:hover h3 {
         text-shadow: 0px 0px 5px rgb(0, 132, 255);
       }
       .gameButtonText p {
-        font-size: 1.2em;
+        font-size: 1.2vw;
         text-align: left;
       }
+
+
+
+      /* Tags */
+      .gameButtonNewTag {
+        position: absolute;
+        top: -2vw;
+        left: -6vw;
+        width: 15vw;
+        height: 2vw;
+       background-color: rgb(23, 192, 226);
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        color: white;
+        font-size: 1.5vw;
+        text-align: center;
+        padding-right: 10vw;
+        line-height: 2vw;
+        transform: rotate(-45deg);
+        box-shadow: 0 4px 6px rgba(0, 179, 255, 0.7);
+        z-index: 2;
+        pointer-events: none;
+        animation: gameButtonNewTagPulse 1s ease-in-out infinite;
+      }
+
+      @keyframes gameButtonNewTagPulse {
+        0% {
+          box-shadow: 0 0px 6px rgba(0, 179, 255, 0.7);
+        }
+        50% {
+          box-shadow: 0 0px 10px rgba(0, 179, 255, 1);
+        }
+        100% {
+          box-shadow: 0 0px 6px rgba(0, 179, 255, 0.7);
+        }
+      }
+
+
+
       .gameCounter {
         color: white;
         font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -172,6 +262,7 @@
         border: 3px solid rgba(50, 50, 50, 0.5);
         border-radius: 20px;
         padding: 10px;
+        transition: 0.3s ease;
       }
       .mainSearchNoresults {
         display: none;
@@ -180,6 +271,57 @@
         font-size: 1.5vw;
         gap: 10px;
       }
+      .mainPageSortButton {
+        display: flex;
+        width: 7vh;
+        height: 7vh;
+        background-image: url("https://anonymousbirb5100.github.io/birdhub-v2/images/icons/sort-icon.png"); /* Sorting icon image */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: rgba(0, 0, 0, 0.7);
+        border: 3px solid rgba(50, 50, 50, 0.5);
+        border-radius: 40%;
+        margin-left: 2vw;
+        cursor: pointer;
+        overflow: hidden;
+        transition: 0.3s ease;
+      }
+      .mainPageSortButton:hover, .mainPageSearch:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 10px 3px black;
+      }
+
+      .sortButtonDropdown {
+        position: relative;
+        display: inline-block;
+      }
+      .sortButtonDropdownSelection {
+        display: none;
+        position: absolute;
+        top: 8vh;
+        left: 0;
+        color: white;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 1vw;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        z-index: 1000;
+        width: 9vw;
+      }
+      .sortButtonDropdownSelection div {
+        padding: 10px;
+        border-radius: 25px;
+        cursor: pointer;
+      }
+      .sortButtonDropdownSelection div:hover {
+        background-color: rgba(70, 70, 70, 0.7);
+      }
+      .sortButtonDropdown.open .sortButtonDropdownSelection {
+        display: block;
+      }
+
 
       /*Main Page Header Menu*/
       .mainPageMenuButton {
@@ -202,6 +344,7 @@
       /*Game Menu*/
       .gameMenuContent {
         display: none;
+        position: relative;
         margin: 0;
         padding: 0;
         flex-direction: column;
@@ -376,11 +519,12 @@
         margin-right: 10px;
         background-color: rgb(72, 0, 255);
         font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        font-size: 1.2em;
+        font-size: 1.4vw;
         color: white;
         border-radius: 10px;
         border: none;
         padding-right: 10px;
+        cursor: pointer;
         transition: 0.3s ease;
     }
     .fullscreenButton {
@@ -392,11 +536,12 @@
         margin-right: 20px;
         background-color: orange;
         font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        font-size: 1.2em;
+        font-size: 1.4vw;
         color: white;
         border-radius: 10px;
         border: none;
         padding-right: 10px;
+        cursor: pointer;
         transition: 0.3s ease;
     }
     .gamePageDescription {
@@ -405,7 +550,7 @@
       color: white;
       background-color: rgba(0, 0, 0, 0.6);
       font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      font-size: 1.3em;
+      font-size: 1.3vw;
       flex-wrap: wrap;
       margin: 20px;
       margin-right: 50px;
@@ -428,9 +573,10 @@
       flex-wrap: wrap;
       position: absolute;
       width: 25vw;
-      height: 88vh;
+      height: auto;
       background-color: rgba(0, 0, 0, 0.6);
       left: 0;
+      bottom: 1vw;
       margin-top: 13vh;
       margin-left: 4vw;
       padding: 3vw;
@@ -439,13 +585,18 @@
       align-content: flex-start; /* Prevent vertical stretching */
     }
 
+
+
+
     /* Individual game button */
+    /* Repurposing the more games game buttons*/
     .moreGamesGameButton {
       flex: 0 0 9.5vw;  /* Allows aspect ratio to work properly and not anomolize(???) button */
-      aspect-ratio: 1 / 1;        /* Keep it square */
+      aspect-ratio: 1 / 1; /* Keep it square */
+    }
+    .moreGamesGameButton, .homeSectionGameButtons {
       position: relative;
       overflow: hidden;
-      border: 3px solid black;
       border-radius: 20px;
       background-color: #fff;
       cursor: pointer;
@@ -454,7 +605,15 @@
       padding: 0;
       text-align: center;
     }
-    .moreGamesGameButton img {
+    .moreGamesGameButton {
+      border: 3px solid black;
+    }
+    .homeSectionGameButtons {
+      width: 9vw;
+      height: 9vw;
+      margin: 1vw;
+    }
+    .moreGamesGameButton img, .homeSectionGameButtons img {
       position: absolute;
       top: 0;
       left: 0;
@@ -466,50 +625,58 @@
       z-index: 0;
     }
 
-    .moreGamesGameButtonText {
+    .moreGamesGameButtonText, .homeSectionGameButtonText {
       position: absolute;
       bottom: 0;
       width: 100%;
       padding: 0.5vw 0;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 25%, transparent 100%);
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.7) 25%, transparent 100%);
       color: white;
       font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      font-size: 1.5em;
+      font-size: 1.6vw;
       text-shadow: 0px 0px 3px black;
       border-radius: 10px;
       box-sizing: border-box;
       z-index: 1;
     }
+    .homeSectionGameButtonText {
+      font-size: 1.6vw;
+    }
     /* Title text inside the overlay */
-    .moreGamesGameButtonTitle {
+    .moreGamesGameButtonTitle, .homeSectionGameButtonTitle {
       display: block;
       transition: transform 0.3s ease;
     }
 
-    .moreGamesGameButton:hover .moreGamesGameButtonTitle {
+    .moreGamesGameButton:hover .moreGamesGameButtonTitle, .homeSectionGameButtons:hover .homeSectionGameButtonTitle {
       transform: translateY(-10px);
     }
     .moreGamesGameButton:hover {
       transform: scale(1.1) translateY(-20px);
       box-shadow: 0 0 8px rgb(0, 132, 255);
     }
+    /* Separate hover effect */
+    .homeSectionGameButtons:hover {
+      transform: translateY(-10px);
+      box-shadow: 0px 20px 10px rgb(0, 191, 255);
+    }
 
     .gamePageMoreGamesLabel {
       margin: auto;
       color: rgb(0, 132, 255);
       font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      font-size: 2.5em;
+      font-size: 2.5vw;
       text-shadow: 0px 0px 10px rgb(0, 132, 255);
       border-radius: 10px;
       padding-bottom: 1.5vw;
       border-bottom: 3px solid royalblue;
     }
-    .gamePageMoreGamesShuffleButton {
+    /* .gamePageMoreGamesShuffleButton {
       color: white;
       background-color: royalblue;
       width: 90%;
       height: 5vh;
-      font-size: 1.7em;
+      font-size: 1.7vw;
       font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
       border: none;
       border-radius: 25px;
@@ -520,7 +687,7 @@
     .gamePageMoreGamesShuffleButton:hover {
       transform: translateY(-10px);
       text-shadow: 0px 0px 3px white;
-    }
+    } */
 
     /*End Game Menu*/
 
@@ -569,7 +736,7 @@
 
     .betaPopupText {
       font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      font-size: 1.7em;
+      font-size: 1.7vw;
       color: white;
       margin: auto;
       z-index: 9991;
@@ -582,7 +749,7 @@
       margin-top: 5px;
       border: 5px solid black;
       border-radius: 10px;
-      font-size: 1.7em;
+      font-size: 1.7vw;
       font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
       box-shadow: 0px 10px 5px black;
       transition: 0.3s ease;
@@ -598,7 +765,7 @@
       gap: 10px;
       color: white;
       font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      font-size: 1em;
+      font-size: 1vw;
       transition: 0.3s ease;
     }
     .betaPopupHider:hover {
@@ -643,7 +810,9 @@
     }
     .alertBox p {
       color: white;
-    }
+    }}
+  
+
 
   </style>
 </head>
@@ -665,7 +834,7 @@
 
   <!-- Main Content -->
   <p style="position: fixed; top: 93vh; left: 1vw; color: white; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 20px; z-index: 999">
-    Beta Version 1.9.2</p>
+    Beta Version 1.9.3</p>
 
   <div id="main-content" class="mainContent">
 
@@ -683,73 +852,59 @@
     </div>
 
 
-    <!--<div class="homeSection">
+
+
+
+    <div class="homeSection">
       <h1>Home</h1>
-    </div>-->
+      <div style="display:flex; flex-direction:column;">
+
+
+        <!--New-->
+        <div class="normalHomeSection">
+          <div style="display: flex; flex-direction: row;">
+            <img style="width: 5vw; height: 5vw; margin-top: 1.5vw; margin-left: 1vw;" src="https://anonymousbirb5100.github.io/birdhub-v2/images/icons/home-section-icons/new-game-icon.png"/>
+            <h2 style="color: rgb(0, 242, 255); text-shadow: 0px 0px 3px rgb(0, 204, 255)">New Games</h2>
+          </div>
+
+          <div style="display: flex; flex-direction: row;" id="home-section-new-games-container1"></div>
+          <div style="display: flex; flex-direction: row;" id="home-section-new-games-container2"></div>
+        </div>
+
+
+      </div>
+    </div>
+
+
+
 
 
     <div class="browseSection">
       <h1>Browse</h1>
       
       <div style="display: flex; margin-bottom: 5vh;">
-        <p class="gameCounter"><span style="color:rgb(0, 132, 255);text-shadow: 0px 0px 10px royalblue;">6</span> Total Games</p>
+        <p class="gameCounter"><span style="color:rgb(0, 132, 255);text-shadow: 0px 0px 10px royalblue;" id="game-counter">X</span> Total <span id="game-counter-label">Games</span></p>
         <input id="main-page-search" class="mainPageSearch" placeholder="Search for games..."/>
+
+        <div class="sortButtonDropdown" id="sort-button-dropdown">
+          <button class="mainPageSortButton" onclick="toggleSortDropdown()"></button>
+          <div class="sortButtonDropdownSelection">
+            <div onclick="selectSort('Newest')">Sort: Newest</div>
+            <div onclick="selectSort('Oldest')">Sort: Oldest</div>
+            <div onclick="selectSort('A-Z')">Sort: A-Z</div>
+          </div>
+        </div>
       </div>
+
+      <p style="color: white; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 2vw; text-shadow: 0px 0px 2px white;">Sorting By: <span id="main-page-sorting-method-text"></span> 
+      <!--<span style="color:rgb(0, 132, 255); text-shadow: 0px 0px 2px rgb(0, 132, 255)"> | </span>Filtering By:--></p>
       <p id="main-search-noresults" class="mainSearchNoresults"></p>
 
-      <div class="gameButtonTrio">
-        <button class="gameButton" 
-        onclick="startGamePage('https://anonymousbirb5100.github.io/soccer-random', 'https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/soccer-random-logo.png', 'Soccer Random', 'Soccer has never been more random. Play against either a CPU or a fellow friend. Control your two soccer players with just one button. Modifiers will change for each match to make it more exciting. Are you ready for the chaos?', ['Sports', 'Multiplayer', 'Physics'])">
-            <img src="https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/soccer-random-logo.png"/>
-            <div class="gameButtonText">
-              <h3 class="gameButtonTitle">Soccer Random</h3>
-              <p>Play this chaotic goal-scoring game with just one button!</p>
-            </div>
-        </button>
-        <button class="gameButton"
-        onclick="startGamePage('https://anonymousbirb5100.github.io/minecraft', 'https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/minecraft-logo.jpeg', 'Minecraft', 'Minecraft is one of, if not the best-selling game in all of video game history. It is an open-world sandbox game where you can explore an infinitely-generated world, fight monsters, build your creations, and play with friends.', ['Sandbox', 'Open-World', 'Multiplayer'])">
-            <img src="https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/minecraft-logo.jpeg"/>
-            <div class="gameButtonText">
-              <h3 class="gameButtonTitle">Minecraft</h3>
-              <p>Build, explore, and survive! An online port of a renowned game.</p>
-            </div>
-        </button>
-        <button class="gameButton"
-        onclick="startGamePage('https://anonymousbirb5100.github.io/1v1lol', 'https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/1v1-lol-logo.jpg', '1v1.LOL', '1v1.LOL is a very popular online FPS, or First Person Shooter, game. In this action-packed shooter, you face on against another player in an epic duel with varied weapons and building mechanics!', ['Multiplayer', 'Shooter', 'Skill'])">
-            <img src="https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/1v1-lol-logo.jpg"/>
-            <div class="gameButtonText">
-                <h3 class="gameButtonTitle">1v1.LOL</h3>
-                <p>Fast-paced online shooter game similar to Fortnite.</p>
-            </div>
-        </button>
-      </div>
 
-      <div class="gameButtonTrio">
-        <button class="gameButton" 
-        onclick="startGamePage('https://anonymousbirb5100.github.io/drive-mad', 'https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/drive-mad-logo.png', 'Drive Mad', 'Drive Mad is a racing game where you must drive through levels with ever-changing obstacles, terrarin, and surprises on increasingly ridiculous cars. Good luck figuring out how to complete each level!', ['Physics', 'Racing'])">
-            <img src="https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/drive-mad-logo.png"/>
-            <div class="gameButtonText">
-              <h3 class="gameButtonTitle">Drive Mad</h3>
-              <p>Drive silly cars at high speeds through dangerous terrain!</p>
-            </div>
-        </button>
-        <button class="gameButton"
-        onclick="startGamePage('https://anonymousbirb5100.github.io/retro-bowl', 'https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/retro-bowl-logo.png', 'Retro Bowl', 'Retro Bowl is a strategy-simulation retro game where you manage your own NFL team. Manage and train your team, devise plays, and keep your teams morale up. Can you win the Retro Bowl?', ['Strategy', 'Sports'])">
-            <img src="https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/retro-bowl-logo.png"/>
-            <div class="gameButtonText">
-              <h3 class="gameButtonTitle">Retro Bowl</h3>
-              <p>Lead your dream football team to victory!</p>
-            </div>
-        </button>
-        <button class="gameButton"
-        onclick="startGamePage('https://anonymousbirb5100.github.io/slope', 'https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/slope-logo.png', 'Slope', 'Slope is an endless runner game where you control a ball rolling through a neon-themed landscape. Try not to fall over or crash into the red killbricks while accelerating at increasingly higher speeds!', ['Skill', 'Timing', 'Action'])">
-            <img src="https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/slope-logo.png"/>
-            <div class="gameButtonText">
-                <h3 class="gameButtonTitle">Slope</h3>
-                <p>Pilot your ball through an endless neon landscape.</p>
-            </div>
-        </button>
-      </div>
+
+      <div class="gameButtons" id="all-games"></div> <!--All the games-->
+
 
 
     </div>
@@ -808,20 +963,107 @@
   <div class="alertBackground" id="alert">
     <div class="alertBox">
       <h1>Alert</h1>
-      <p><span id="alert-blue-text" style="color: rgb(0, 132, 255);">Spesial Blue Text</span><span id="alert-text">Hello</span></p>
+      <p id="alert-text">Hello</p>
       <button>why</button>
     </div>
   </div>
 
   <script>
     const allGamesList = [
-      { title: "Slope", img: "https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/slope-logo.png", link: "https://anonymousbirb5100.github.io/slope", description: "Slope is an endless runner game where you control a ball rolling through a neon-themed landscape. Try not to fall over or crash into the red killbricks while accelerating at increasingly higher speeds!", tags: ['Skill', 'Timing', 'Action'] },
-      { title: "Retro Bowl", img: "https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/retro-bowl-logo.png", link: "https://anonymousbirb5100.github.io/retro-bowl", description: "Retro Bowl is a strategy-simulation retro game where you manage your own NFL team. Manage and train your team, devise plays, and keep your teams morale up. Can you win the Retro Bowl?", tags: ['Strategy', 'Sports'] },
-      { title: "Drive Mad", img: "https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/drive-mad-logo.png", link: "https://anonymousbirb5100.github.io/drive-mad", description: "Drive Mad is a racing game where you must drive through levels with ever-changing obstacles, terrarin, and surprises on increasingly ridiculous cars. Good luck figuring out how to complete each level!", tags: ['Physics', 'Racing'] },
-      { title: "1v1.LOL", img: "https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/1v1-lol-logo.jpg", link: "https://anonymousbirb5100.github.io/1v1lol", description: '1v1.LOL is a very popular online FPS, or First Person Shooter, game. In this action-packed shooter, you face on against another player in an epic duel with varied weapons and building mechanics!', tags: ['Multiplayer', 'Shooter', 'Skill'] },
-      { title: "Minecraft", img: "https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/minecraft-logo.jpeg", link: "https://anonymousbirb5100.github.io/minecraft", description: 'Minecraft is one of, if not the best-selling game in all of video game history. It is an open-world sandbox game where you can explore an infinitely-generated world, fight monsters, build your creations, and play with friends.', tags: ['Sandbox', 'Open-World', 'Multiplayer'] },
-      { title: "Soccer Random", img: "https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/soccer-random-logo.png", link: "https://anonymousbirb5100.github.io/soccer-random", description: 'Soccer has never been more random. Play against either a CPU or a fellow friend. Control your two soccer players with just one button. Modifiers will change for each match to make it more exciting. Are you ready for the chaos?', tags: ['Sports', 'Multiplayer', 'Physics'] },
+      { title: "Slope", img: "https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/slope-logo.png", link: "https://anonymousbirb5100.github.io/slope", shortdescription: "Pilot your ball through an endless neon landscape.", description: "Slope is an endless runner game where you control a ball rolling through a neon-themed landscape. Try not to fall over or crash into the red killbricks while accelerating at increasingly higher speeds!", tags: ['Skill', 'Timing', 'Action'] },
+      { title: "Retro Bowl", img: "https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/retro-bowl-logo.png", link: "https://anonymousbirb5100.github.io/retro-bowl", shortdescription: "Lead your dream football team to victory!", description: "Retro Bowl is a strategy-simulation retro game where you manage your own NFL team. Manage and train your team, devise plays, and keep your teams morale up. Can you win the Retro Bowl?", tags: ['Strategy', 'Sports'] },
+      { title: "Drive Mad", img: "https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/drive-mad-logo.png", link: "https://anonymousbirb5100.github.io/drive-mad", shortdescription: "Drive silly cars at high speeds through dangerous terrain!", description: "Drive Mad is a racing game where you must drive through levels with ever-changing obstacles, terrarin, and surprises on increasingly ridiculous cars. Good luck figuring out how to complete each level!", tags: ['Physics', 'Racing'] },
+      { title: "1v1.LOL", img: "https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/1v1-lol-logo.jpg", link: "https://anonymousbirb5100.github.io/1v1lol", shortdescription: "Fast-paced online shooter game similar to Fortnite.", description: '1v1.LOL is a very popular online FPS, or First Person Shooter, game. In this action-packed shooter, you face on against another player in an epic duel with varied weapons and building mechanics!', tags: ['Multiplayer', 'Shooter', 'Skill'] },
+      { title: "Minecraft", img: "https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/minecraft-logo.jpeg", link: "https://anonymousbirb5100.github.io/minecraft", shortdescription: "Build, explore, fight, and survive!", description: 'Minecraft is one of, if not the best-selling game in all of video game history. It is an open-world sandbox game where you can explore an infinitely-generated world, fight monsters, build your creations, and play with friends.', tags: ['Sandbox', 'Open-World', 'Multiplayer'] },
+      { title: "Soccer Random", img: "https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/soccer-random-logo.png", link: "https://anonymousbirb5100.github.io/soccer-random", shortdescription: "Play this chaotic goal-scoring game with just one button!", description: 'Soccer has never been more random. Play against either a CPU or a fellow friend. Control your two soccer players with just one button. Modifiers will change for each match to make it more exciting. Are you ready for the chaos?', tags: ['Sports', 'Multiplayer', 'Physics'] },
+      { title: "Basketball Random", img: "https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/basketball-random-logo.jpeg", link: "https://anonymousbirb5100.github.io/basketball-random", shortdescription: "Retro-themed basketball game, but with ragdolls!", description: "Basketball Random is a 2-player retro pixel gamewith ragdoll physics. Square up against a computer or a friend. Every new round, changing fields, changing players and changing balls will surprise you! Are you ready for the chaos?", tags: ['Sports', 'Multiplayer', 'Physics'] },
+      { title: "Polytrack", img: "https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/polytrack-logo.png", link: "https://anonymousbirb5100.github.io/polytrack", shortdescription: "Trackmania-style racing game with lots of wacky courses.", description: "Polytrack is a 3-D racing game inspired by Trackmaina. Combine loops, turns, and slopes into 13 action-packed levels to race through. This is a game that is sure to test your reflexes and timing skills.", tags: ['Racing', 'Skill', 'Physics'] },
+      { title: "Geometry Dash", img: "https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/geometry-dash-logo.png", link: "https://anonymousbirb5100.github.io/geometry-dash", shortdescription: "Jump, fly, and flip through this very famous music game.", description: "Geometry Dash is a very popular rhythm game with 15 levels from the original game for you to play with. Whether you are just trying out the first few levels or a seasoned veteran who is looking to tackle down the hardest, this game is for you! (Please note that this is an unofficial version.)", tags: ['Music', 'Skill', 'Action'] },
+      {title: "Moto X3M", img: "https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/moto-x3m-logo.png", link: "https://anonymousbirb5100.github.io/moto-x3m", shortdescription: "Drive through the courses while doing stunts!", description: "Moto X3M is a simple motorcycle racing game. Use the arrow keys to accelerate, brake, or flip your bike. Make it through the course as quickly as possible. Do stunts in the air to shave time off of your run!", tags: ["Racing", "Action", "Skill"] },
     ]
+
+
+
+   //Browse Section Filling-In
+   const browseSection = document.getElementById("all-games");
+   const allGamesListReverse = allGamesList.slice().reverse();
+
+   allGamesListReverse.forEach((game, index) => {
+    const button = document.createElement("button");
+    button.className = "gameButton";
+    button.onclick = function() {
+      startGamePage(game.link, game.img, game.title, game.description, game.tags);
+    };
+    if (index >= 0 && index <= 3) { //If the game is new
+
+      button.innerHTML = `
+        <img src="${game.img}"/>
+        <div class="gameButtonNewTag">New!</div>
+        <div class="gameButtonText">
+          <h3 class="gameButtonTitle">${game.title}</h3>
+          <p>${game.shortdescription}</p>
+        </div>
+      `;
+
+    } else {
+
+      button.innerHTML = `
+        <img src="${game.img}"/>
+        <div class="gameButtonText">
+          <h3 class="gameButtonTitle">${game.title}</h3>
+          <p>${game.shortdescription}</p>
+        </div>
+      `;
+
+    }
+    browseSection.appendChild(button);
+   });
+   resetGameCounter();
+
+
+
+
+    //Home Section Filling-In
+
+    //New Games section
+    const allGamesListLastFour = allGamesList.slice(allGamesList.length - 4, allGamesList.length);
+    const newGamesContainerOne = document.getElementById("home-section-new-games-container1")
+    const newGamesContainerTwo = document.getElementById("home-section-new-games-container2")
+    allGamesListLastFour.forEach((game, iteration) => {
+      const newGamesGame = document.createElement("div");
+      newGamesGame.onclick = function() {
+        startGamePage(game.link, game.img, game.title, game.description, game.tags);
+      };
+      newGamesGame.innerHTML = `
+          <div class="homeSectionGameButtons">
+            <img src="${game.img}"/>
+            <div class="homeSectionGameButtonText">
+              <span class="homeSectionGameButtonTitle">${game.title}</span>
+            </div>
+          </div>
+      `;
+      if (iteration <= 1) {
+        newGamesContainerOne.appendChild(newGamesGame);
+      } else {
+        newGamesContainerTwo.appendChild(newGamesGame);
+      }
+    });
+
+
+
+
+
+    //Auto-adjust game title if it is too long
+    function autoAdjustGameTitleSize() {
+      const gameButtonTitles = document.querySelectorAll('.gameButtonTitle');
+      gameButtonTitles.forEach(title => {
+        if (title.textContent.length >= 15) {
+          title.style.lineHeight = "1.5vw";
+          title.style.fontSize = "1.5vw";
+        }
+      });
+    };
+    autoAdjustGameTitleSize();
 
     //betapopup
     const javaBetaPopup = document.getElementById("beta-popup");
@@ -893,16 +1135,36 @@
 
 
 
+    //Game Counter
+    function resetGameCounter() {
+      const numberOfTotalGames = [...document.querySelectorAll('.gameButton')];
+      var numberOfShownGames = numberOfTotalGames.length;
+      numberOfTotalGames.forEach(button => { //forEach button in numberOfTotalGames
+        if (window.getComputedStyle(button).display === "none" || window.getComputedStyle(button).opacity === 0) { //checks if button had display:none or opacity:0
+          numberOfShownGames -= 1;
+        }
+      });
+      document.getElementById("game-counter").innerText = numberOfShownGames;
+      if (numberOfShownGames === 1) {
+        document.getElementById("game-counter-label").innerText = "Game"; //changes label to "[numberOfShownGames] Total Game" if there is only 1 game available. Honor the grammar
+      } else {
+        document.getElementById("game-counter-label").innerText = "Games";
+      }
+    };
+
+
+
+
     //Search
 
     const mainPageSearchInput = document.getElementById('main-page-search');
-    const gameButtons = document.querySelectorAll('.gameButton');
 
     mainPageSearchInput.addEventListener('input', () => {
       useMainPageSearch();
     });
 
     function useMainPageSearch() {
+      const gameButtons = document.querySelectorAll('.gameButton'); //Finds all of the game buttons with class .gameButton
       const query = mainPageSearchInput.value.toLowerCase().replace(/\s+/g, '');
       const exactMatch = [];
       const looseMatch = [];
@@ -950,7 +1212,9 @@
         noResults.style.display = 'block';
       }
 
-    })};
+    })
+    resetGameCounter(); //Resets the game counter to display current number of shown games
+  };
 
 
 
@@ -972,6 +1236,79 @@
       mainPageSearchInput.value = javaGameSearch.value;
       leaveGamePage();
       useMainPageSearch();
+      }
+    });
+
+
+
+
+    //Sorting Games
+    window.mainPageSortingMethod = "Newest";
+    document.getElementById("main-page-sorting-method-text").innerText = mainPageSortingMethod;
+
+    function toggleSortDropdown() {
+      document.getElementById('sort-button-dropdown').classList.toggle('open');
+    }
+    function selectSort(method) {
+      document.getElementById('sort-button-dropdown').classList.remove('open');
+      const allGames = document.getElementById("all-games");
+      mainPageSortingMethod = method;
+      document.getElementById("main-page-sorting-method-text").innerText = mainPageSortingMethod;
+      var editedGamesList = allGamesList.slice();
+
+
+      if (method === "Oldest") { //Method: Oldest First
+        var hello = "hello";
+      } else if (method === "Newest") { //Method: Newest First
+        editedGamesList = allGamesList.slice().reverse(); //Simply reverses allGamesList
+      } else if (method === "A-Z") { //Method: A-Z Sort
+        editedGamesList = allGamesList.slice().sort((a, b) => a.title.localeCompare(b.title));
+      };
+
+
+      allGames.innerHTML = "";
+      const newGames = allGamesList.slice().reverse().slice(0, 4).map(game => game.title); //Find games that need the "New" tag
+      editedGamesList.forEach((gameInfo) => {
+        let newGameButton = document.createElement("button");
+        
+        newGameButton.onclick = function() {
+          startGamePage(gameInfo.link, gameInfo.img, gameInfo.title, gameInfo.description, gameInfo.tags)
+        }
+
+        if (newGames.includes(gameInfo.title)) { //If game is new
+          newGameButton.innerHTML = `
+          <div class="gameButtonNewTag">New!</div>
+          <img src="${gameInfo.img}"/>
+          <div class="gameButtonText">
+            <h3 class="gameButtonTitle">${gameInfo.title}</h3>
+            <p>${gameInfo.shortdescription}</p>
+          </div>
+        `;
+
+        } else {
+          newGameButton.innerHTML = `
+            <img src="${gameInfo.img}"/>
+            <div class="gameButtonText">
+              <h3 class="gameButtonTitle">${gameInfo.title}</h3>
+              <p>${gameInfo.shortdescription}</p>
+            </div>
+          `;
+        }
+
+        newGameButton.classList.add("gameButton");
+        allGames.appendChild(newGameButton);
+      });
+
+
+    useMainPageSearch();
+    autoAdjustGameTitleSize();
+    };
+
+    // Closes dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+      const dropdown = document.getElementById('sort-button-dropdown');
+      if (!dropdown.contains(event.target)) {
+        dropdown.classList.remove('open');
       }
     });
 
@@ -1011,11 +1348,11 @@
     }
     function gamePageMoreGamesDisplay() {
       const javaGamePageMoreGames = document.getElementById("game-page-more-games");
-      var selectedGames = getRandomGames(4);
+      var selectedGames = getRandomGames(6);
 
       function checkIfCurrentGameMatches() {
         while (true) {
-          selectedGames = getRandomGames(4);
+          selectedGames = getRandomGames(6);
           let currentGameInSection = false;
           selectedGames.forEach(game => {    //checks to make sure the current game doesn't get displayed
             if (game.link == URLForOpenNewTabButton) { //if games don't change, then it's just luck that all the same games got chosen
@@ -1054,14 +1391,14 @@
         javaGamePageMoreGames.appendChild(moreGamesGameButton);
       });
       
-      //shuffle button
-      const gamePageMoreGamesShuffleButton = document.createElement("button");
-      gamePageMoreGamesShuffleButton.className = "gamePageMoreGamesShuffleButton";
-      gamePageMoreGamesShuffleButton.innerText = "Shuffle Games";
-      gamePageMoreGamesShuffleButton.onclick = function() {
-        gamePageMoreGamesDisplay();
-      }
-      javaGamePageMoreGames.appendChild(gamePageMoreGamesShuffleButton);
+      //shuffle button (unused for right now)
+      //const gamePageMoreGamesShuffleButton = document.createElement("button");
+     // gamePageMoreGamesShuffleButton.className = "gamePageMoreGamesShuffleButton";
+      //gamePageMoreGamesShuffleButton.innerText = "Shuffle Games";
+      //gamePageMoreGamesShuffleButton.onclick = function() {
+        //gamePageMoreGamesDisplay();
+     // }
+     // javaGamePageMoreGames.appendChild(gamePageMoreGamesShuffleButton);
 
     }
 
