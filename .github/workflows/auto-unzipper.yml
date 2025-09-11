@@ -1,49 +1,71 @@
-name: Automatically Unzip ZIPs and Push to Main
+name: Automatically unzip ZIPs and push to master
 
 on:
   push:
     branches:
-      - auto-zip-extracter
+      - auto-zip-extractor
     paths:
       - '**.zip'
+
+permissions:
+  contents: write
 
 jobs:
   unzip-and-push:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout auto-zip-extracter branch
-      uses: actions/checkout@v3
-      with:
-        ref: auto-zip-extracter
-
-    - name: Set up Git
-      run: |
-        git config --global user.name "github-actions"
-        git config --global user.email "github-actions@github.com"
-
-    - name: Create destination folder and unzip
-      run: |
-        mkdir -p games
-        for file in $(find . -name "*.zip"); do
-          folder_name=$(basename "$file" .zip)
-          unzip "$file" -d "games/$folder_name"
-        done
-
-    - name: Delete ZIP files
-      run: |
-        find . -name "*.zip" -type f -delete
-
-    - name: Commit and push to main
-      run: |
-        - name: Checkout auto-zip-extractor branch
+      - name: Checkout source branch (auto-zip-extractor)
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # pulls full history and all branches
           ref: auto-zip-extractor
-        git checkout master
-        git pull origin master
-        mkdir -p games
-        git add .
-        git commit -m "Unzipped files from auto-zip-extracter"
-        git push origin master
+          fetch-depth: 0
+
+      - name: Set up git identity
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
+      - name: Unzip all ZIPs into games/<zip-name>
+        run: |
+          set -euo pipefail
+          mkdir -p games
+          found_any=false
+          while IFS= read -r -d '' file; do
+            found_any=true
+            folder_name="$(basename "$file" .zip)"
+            unzip -o "$file" -d "games/$folder_name"
+          done < <(find . -maxdepth 1 -type f -name '*.zip' -print0 || true)
+          if [ "$found_any" = false ]; then
+            echo "No ZIP files found at repo root. If your ZIPs are in subfolders, adjust the find command."
+          fi
+
+      - name: Delete ZIP files after extraction
+        run: |
+          find . -type f -name '*.zip' -delete
+
+      - name: Stage output to temporary directory
+        run: |
+          rm -rf /tmp/games-out
+          mkdir -p /tmp/games-out
+          # Copy only the games/ directory we produced
+          rsync -a --delete games/ /tmp/games-out/
+
+      - name: Switch to master and bring in extracted files
+        run: |
+          set -euo pipefail
+          git fetch --all
+          git checkout master
+          mkdir -p games
+          rsync -a /tmp/games-out/ games/
+
+      - name: Commit and push changes to master (if any)
+        run: |
+          set -euo pipefail
+          git add games
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Unzip and publish from auto-zip-extractor"
+            git push origin master
+          fi
