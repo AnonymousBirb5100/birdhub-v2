@@ -1,0 +1,45 @@
+name: Automatically Unzip ZIPs and Push to Main
+
+on:
+  push:
+    branches:
+      - auto-zip-extracter
+    paths:
+      - '**.zip'
+
+jobs:
+  unzip-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout auto-zip-extracter branch
+      uses: actions/checkout@v3
+      with:
+        ref: auto-zip-extractor
+
+    - name: Set up Git
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "github-actions@github.com"
+
+    - name: Create destination folder and unzip
+      run: |
+        mkdir -p my-folder
+        for file in $(find . -name "*.zip"); do
+          folder_name=$(basename "$file" .zip)
+          unzip "$file" -d "games/$folder_name"
+        done
+
+    - name: Delete ZIP files
+      run: |
+        find . -name "*.zip" -type f -delete
+
+    - name: Commit and push to main
+      run: |
+        git checkout main
+        git pull origin main
+        mkdir -p games
+        cp -r games/* games/
+        git add .
+        git commit -m "Unzipped files from auto-zip-extracter"
+        git push origin main
