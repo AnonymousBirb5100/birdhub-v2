@@ -24,7 +24,7 @@ jobs:
 
     - name: Create destination folder and unzip
       run: |
-        mkdir -p my-folder
+        mkdir -p games
         for file in $(find . -name "*.zip"); do
           folder_name=$(basename "$file" .zip)
           unzip "$file" -d "games/$folder_name"
