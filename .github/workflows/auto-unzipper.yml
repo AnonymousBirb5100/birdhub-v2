@@ -15,7 +15,7 @@ jobs:
     - name: Checkout auto-zip-extracter branch
       uses: actions/checkout@v3
       with:
-        ref: auto-zip-extractor
+        ref: auto-zip-extracter
 
     - name: Set up Git
       run: |
@@ -39,7 +39,6 @@ jobs:
         git checkout master
         git pull origin master
         mkdir -p games
-        cp -r games/* games/
         git add .
         git commit -m "Unzipped files from auto-zip-extracter"
         git push origin master
