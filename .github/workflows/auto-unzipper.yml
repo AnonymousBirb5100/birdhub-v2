@@ -36,10 +36,10 @@ jobs:
 
     - name: Commit and push to main
       run: |
-        git checkout main
-        git pull origin main
+        git checkout master
+        git pull origin master
         mkdir -p games
         cp -r games/* games/
         git add .
         git commit -m "Unzipped files from auto-zip-extracter"
-        git push origin main
+        git push origin master
