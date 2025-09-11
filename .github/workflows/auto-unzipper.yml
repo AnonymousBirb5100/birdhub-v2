@@ -36,8 +36,11 @@ jobs:
 
     - name: Commit and push to main
       run: |
-        - name: Fetch all branches
-        run: git fetch --all
+        - name: Checkout auto-zip-extractor branch
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # pulls full history and all branches
+          ref: auto-zip-extractor
         git checkout master
         git pull origin master
         mkdir -p games
