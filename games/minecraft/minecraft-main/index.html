@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="shortcut icon" type="image/png" href="images/favicon.jpeg">
+        <title>Minecraft Unblocked | AnonymousBirb5100</title>
+        <style>
+            body {
+                background-image: url("https://anonymousbirb5100.github.io/minecraft/images/minecraft-menu-bg.png");
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+            .title {
+                background: none;
+                font-size: 70px;
+                text-align: center;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                padding-top: 30px;
+            }
+            .button1, .button2 {
+                width: 10vw;
+                height: 10vw;
+                overflow: hidden;
+                border-radius: 10px;
+                border: none;
+                transition: 0.3s ease;
+            }
+            .button1 {
+                background: url("https://anonymousbirb5100.github.io/minecraft/images/minecraft-1.8-coverart.jpeg")
+            }
+            .button2 {
+                background: url("https://anonymousbirb5100.github.io/minecraft/images/minecraft-1.12-coverart.jpeg")
+            }
+            .button1:hover, .button2:hover {
+                box-shadow: 0px 30px 30px black;
+                transform: translateY(-30px);
+            }
+
+            .buttons {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                gap: 50px;
+            }
+
+            .buttonsAndText {
+                flex-direction: column;
+            }
+            .versionText {
+                font-size: 20px;
+                font-weight: bold;
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+
+            .description {
+                width: 90vw;
+                background-color: rgba(0, 0, 0, 0.5);
+                padding: 15px;
+                border-radius: 25px;
+            }
+            .description p {
+                font-size: 20px;
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1 class="title">Choose a version of Minecraft to play!</h1>
+
+        <div class="buttons">
+            <div class="buttonsAndText">
+                <button class="button1" onclick="window.location.href='https://anonymousbirb5100.github.io/minecraft/eaglercraft-1.8.html'">
+                </button>
+                <p class="versionText">Minecraft 1.8.8</p>
+            </div>
+
+            <div class="buttonsAndText">
+                <button class="button2" onclick="window.location.href='https://anonymousbirb5100.github.io/minecraft/eaglercraft-1.12.html'">
+                </button>
+                <p class="versionText">Minecraft 1.12.2</p>
+            </div>
+
+        </div>
+        
+        <div class="description">
+            <p>Minecraft is a open-world sandbox game. Explore an infinitely generated world, defeat monsters, and build masterpieces!
+            </br>
+            Our minecraft runs on Eaglercraft, a web-based version of Minecraft that does not require the launcher. We have ported both
+            updates 1.8.8 and 1.12.2 for more variety!
+            </br>
+            Go to https://github.com/AnonymousBirb5100/minecraft, and download either eaglercraft-1.8.html or eaglercraft-1.12.html to self-host
+            your very own Minecraft!
+            </p>
+        </div>
+    </body>
+</html>
