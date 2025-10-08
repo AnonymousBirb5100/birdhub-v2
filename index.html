@@ -1,11 +1,17 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>BirdHub | Unblocked Browser Games</title>
-  <link rel="shortcut icon" type="image/png" href="https://anonymousbirb5100.github.io/birdhub-v2/images/birdhub-logo.png">
+  <meta name="robots" content="index, nofollow">
+  <meta name="description" content="Welcome to the BirdHub! We hope you enjoy, learn, and have fun on our website.">
+  <title>BirdHub | Online Browser Games</title>
+  <link rel="shortcut icon" type="image/png" href="images/birdhub-logo.png">
+  <base href="https://anonymousbirb5100.github.io/birdhub-v2/">
   <style>
+
+    .html {
+      scroll-behavior: smooth;
+    }
     /* Particle background */
     #particle-bg {
       position: fixed;
@@ -50,6 +56,7 @@
         margin: 0;
         padding: 0;
         height: 100%;
+        
     }
       .titleSection {
         display: flex;
@@ -85,7 +92,7 @@
         font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
       }
 
-      .homeSection, .browseSection {
+      .homeSection, .browseSection, .aboutSection {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
@@ -100,7 +107,7 @@
         box-shadow: 0px 0px 30px black;
         overflow: hidden;
       }
-      .homeSection h1, .browseSection h1 {
+      .homeSection h1, .browseSection h1, .aboutSection h1 {
         color: rgb(0, 132, 255);
         font-size: 4.5vw;
         font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -164,7 +171,7 @@
         align-items: center;
         position: relative;
         width: 25vw;
-        height: 20vh;
+        height: 10vw;
         gap: 8px;
         margin: 2vw;
         background-color: rgba(0, 0, 0, 0.5);
@@ -254,7 +261,7 @@
       }
       .mainPageSearch {
         width: 25vw;
-        height: 3vh;
+        height: 2vw;
         background-color: rgba(0, 0, 0, 0.7);
         color: white;
         font-size: 1.2vw;
@@ -273,9 +280,9 @@
       }
       .mainPageSortButton {
         display: flex;
-        width: 7vh;
-        height: 7vh;
-        background-image: url("https://anonymousbirb5100.github.io/birdhub-v2/images/icons/sort-icon.png"); /* Sorting icon image */
+        width: 4vw;
+        height: 4vw;
+        background-image: url("images/icons/sort-icon.png"); /* Sorting icon image */
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -323,21 +330,262 @@
       }
 
 
+
       /*Main Page Header Menu*/
       .mainPageMenuButton {
         position: fixed;
         width: 2vw;
         height: 2vw;
-        margin: 1vw;
         padding: 1vw;
         background-color: rgba(39, 39, 39, 0.5);
         border-radius: 30%;
         transition: 0.3s ease;
+        cursor: pointer;
+        z-index: 9002;
       }
       .mainPageMenuButton:hover {
         transform: scale(1.1);
         box-shadow: 0px 0px 10px white;
       }
+
+      .mainPageMenuHeaderBackground {
+        display: block;
+        position: fixed;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        pointer-events: none;
+        width: 101vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9000;
+        transform: translateX(-1vw);
+        transition: opacity 1s ease;
+      }
+      .mainPageMenuHeader {
+        display: flex;
+        position: fixed;
+        justify-content: right;
+        width: 100vw;
+        height: 15vh;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-bottom: 5px solid royalblue;
+        z-index: 9001;
+        transform: translateX(-100vw); /* Start off-screen */
+        transition: transform 0.5s ease-out;
+      }
+      .mainPageHeaderMenuInterface {
+        display: flex;
+        justify-content: right;
+        flex-direction: row;
+        width: 91vw;
+        height: 7vh;
+        margin: 1vw;
+        margin-top: 0.5vw;
+        padding: 1vw;
+        color: white;
+        font-size: 2.5vw;
+        line-height: 0;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        text-shadow: 0px 0px 3px white;
+        font-weight: bold;
+      }
+      #main-header-settings-button:hover {
+        transform: rotate(180deg);
+      }
+      .mainHeaderWebPageShortcuts {
+        text-decoration: none;
+        color: white; text-shadow: none;
+        position: relative;
+        top: 2vw;
+        margin-left: 1vw;
+        margin-right: 2vw;
+        font-size: 2vw;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+      .mainHeaderWebPageShortcuts:hover {
+        color:rgb(0, 132, 255);
+        text-shadow: 0px 0px 3px rgb(0, 132, 255);
+      }
+
+
+      .settingsPopup {
+        display: none;
+        position: fixed;
+        flex-direction: column;
+        width: 59vw;
+        height: 79vh;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 9004;
+        top: 10vh;
+        left: 20vw;
+        box-shadow: 0px 0px 10px black;
+        border-radius: 3vw;
+        padding: 2vw;
+        padding-top: 0;
+        color: white;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        transform: translateY(-100vw);
+        transition: transform 1s ease-out;
+      }
+      .settingsPopup h3 {
+        font-size: 5vw;
+        line-height: 0;
+        color: rgb(0, 132, 255);
+        text-shadow: 0px 0px 5px rgb(0, 132, 255);
+      }
+      .settingsPopupIcon {
+        margin-left: 28%;
+        margin-top: 1vw;
+        margin-right: 1vw;
+        width: 7vw;
+        height: 7vw;
+      }
+      .settingsPopupCloseButton {
+         position: fixed;
+         top: 1vw;
+         right: 1vw;
+         width: 3vw;
+         height: 3vw;
+         cursor: pointer;
+         transition: transform 0.3s ease;
+      }
+      .settingsPopupCloseButton:hover {
+        transform: scale(1.1);
+      }
+
+
+      .settingsPopupTabSection {
+        display: flex;
+      }
+
+      .settingsPopupTab {
+        flex: 1;
+        width: 15vw;
+        padding: 10px;
+        text-align: center;
+        cursor: pointer;
+        border: 2px solid rgb(0, 132, 255);
+        background-color: black;
+        border-bottom: none;
+        margin-left: 0.5vw;
+        margin-right: 0.5vw;
+        border-radius: 12px 12px 0 0;
+        font-size: 1.3vw;
+      }
+
+      .settingsPopupTab.active {
+        background-color: black;
+        border: 2px solid royalblue;
+        border-bottom: none;
+        border-radius: 12px 12px 0 0;
+        position: relative;
+        z-index: 3;
+        margin-bottom: -2px; /* visually overlaps content border */
+      }
+
+      .settingsPopupContent {
+        display: none;
+        padding: 2vw;
+        width: 100%;
+        height: 20vw;
+        font-size: 1.5vw;
+        animation: settingsPopupFadeIn 0.3s ease-in-out;
+      }
+
+      .settingsPopupContent.active {
+        display: block;
+      }
+      @keyframes settingsPopupFadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      .settingsToggleWrapper {
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        margin-top: 2vw;
+      }
+
+      .settingsToggleLabel {
+        font-size: 1.5vw;
+        margin-left: 1vw;
+      }
+
+      .settingsToggle {
+        width: 4vw;
+        height: 2vw;
+        background-color: #ccc;
+        border-radius: 50px;
+        position: relative;
+        cursor: pointer;
+        transition: background-color 0.3s linear(0, 0.2, 1, 0.8, 1);
+      }
+
+      .settingsToggle::before {
+        content: "";
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 1.5vw;
+        height: 1.5vw;
+        background-color: white;
+        border-radius: 50%;
+        transition: transform 0.3s linear(0, 0.2, 1, 0.8, 1);
+      }
+
+      .settingsToggle.on {
+        background-color: rgb(0, 132, 255);
+      }
+
+      .settingsToggle.on::before {
+        transform: translateX(2vw);
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      .aboutSectionInfoBox {
+        width: 90%;
+        padding: 3vw;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 2vw;
+        color: white;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 1.5vw;
+        box-shadow: 0px 0px 15px black;
+
+      }
+
+
 
 
 
@@ -352,14 +600,14 @@
       }
       .gameIframe {
         width: 60vw;
-        height: 60vh;
+        height: 28vw;
         justify-content:center;
         align-items: center;
         border: 5px solid black;
         box-sizing:border-box;
         border-radius: 25px;
-        margin: 20px;
-        margin-right: 50px;
+        margin: 1.8vw;
+        margin-right: 3.6vw;
         position: relative; /* Keeps it inside container */
         z-index: 10; /* Ensures iframe appears above loading screen */
         overflow: hidden;
@@ -367,7 +615,7 @@
      .gameIframeContainer {
         position: relative;
         width: 60vw;
-        height: 60vh;
+        height: 28vw;
         display: flex; /* Ensure it contains both elements */
         justify-content: center; /* Centers the iframe */
         align-items: center; /* Centers vertically */
@@ -388,14 +636,15 @@
           #000000 40px
         );
         display: flex;
-        width: 55.5vw;
-        height: 60vh;
+        width: 55vw;
+        height: 28vw;
         justify-content:center;
         align-items: center;
         border: 5px solid black;
         box-sizing:border-box;
         border-radius: 25px;
         margin-left: 1.5vw;
+        padding: 1vw;
         flex-direction: column;
         z-index: 5;
         } /*bob shooter square series pep slayer awakening heroes (mab) srg (mab) brainrot td (meme)*/
@@ -470,6 +719,7 @@
       height: 4vw;
       margin: 0.5vw;
       transition: 0.3s ease;
+      cursor: pointer;
     }
     .gameHeaderLogo:hover {
       transform: scale(1.2);
@@ -501,10 +751,70 @@
       opacity: 0.5;
       transition: 0.3s ease;
       margin-right: 10px;
+      margin-left: 0;
     }
     .gameHeaderSearchButton:hover {
       opacity: 1;
     }
+    .gamePageSearchContainer {
+      position: relative;
+      width: 20vw;
+      margin: 0 auto;
+      margin-right: 5vw;
+    }
+
+
+    .gamePageSearchPopup {
+      position: absolute;
+      top: 100%;
+      left: 1.3vw;
+      width: 21vw;
+      margin-top: 1vw;
+      background-color: rgba(0, 0, 0, 0.8);
+      border: none;
+      border-radius: 6px;
+      box-shadow: 0 0px 10px black;
+      z-index: 100;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .gamePageSearchPopupResult {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      cursor: pointer;
+      border-bottom: 1px solid black;
+      transition: 0.3s ease;
+    }
+    .gamePageSearchPopupResult:last-child {
+      border-bottom: none;
+    }
+    .gamePageSearchPopupResult:hover {
+      background-color: rgba(0, 132, 255, 0.8);
+    }
+    .gamePageSearchPopupResult img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      margin-right: 12px;
+      border-radius: 4px;
+    }
+    .gamePageSearchPopupResult span {
+      font-size: 1.5vw;
+      color: white;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    .gamePageSearchPopupNoresults {
+      padding: 12px;
+      text-align: center;
+      font-size: 1vw;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      color: #d7d7d7;
+      font-style: italic;
+    }
+
+
+
 
     .gameTitleSectionButtons {
         display:flex;
@@ -544,7 +854,7 @@
         cursor: pointer;
         transition: 0.3s ease;
     }
-    .gamePageDescription {
+    .gamePageDescription, .gamePageFunctionButtons {
       display: flex;
       width: 52.5vw;
       color: white;
@@ -557,6 +867,11 @@
       padding: 20px;
       border-radius: 25px;
     }
+    .gamePageFunctionButtons {
+      justify-content: center;
+      height: 3vw;
+      overflow: visible;
+    }
     .openNewTabButton img, .fullscreenButton img {
       width: 2vw;
       height: 2vw;
@@ -565,6 +880,22 @@
     .openNewTabButton:hover, .fullscreenButton:hover {
       transform: translateY(-10px);
     }
+    .gamePageFunctionButtons img {
+      width: 3vw;
+      height: 3vw;
+      margin-left: 3vw;
+      margin-right: 3vw;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    .gamePageFunctionButtons img {
+      transition: 0.3s ease;
+    }
+    .gamePageFunctionButtons button:hover, .gamePageFunctionButtons img:hover {
+      transform: translateY(-5px);
+    }
+
+
 
     /*Game Page More Games*/
     /* Container for all game buttons */
@@ -793,9 +1124,9 @@
       display: flex;
       flex-direction: column;
       width: 30vw;
-      height: 20vh;
       background-color: rgba(0, 0, 0, 0.6);
       margin: auto;
+      padding: 1vw;
       align-items: center;
       font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
       border-radius: 25px;
@@ -810,15 +1141,107 @@
     }
     .alertBox p {
       color: white;
-    }}
-  
+    }
+    .alertBox button {
+      color: white;
+      background-color: rgba(0, 0, 0, 0.7);
+      border: 3px solid rgba(0, 132, 255);
+      width: 6vw;
+      height: 3vw;
+      margin: 1vw;
+      font-size: 1.5vw;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      border-radius: 1vw;
+      transition: 0.3s ease;
+    }
+    .alertBox button:hover {
+      transform: translateY(-5px);
+      background-color: rgba(65, 105, 225, 0.7);
+    }
+    .universalTooltipContainer {
+    position: relative;
+    display: flex;
+    width: min-content;
+    height: min-content;
+    justify-content: center;
+    text-align: center;
+    }
+    .universalTooltip {
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.6);
+      white-space: nowrap;
+      display: flex;
+      color: white;
+      opacity: 0;
+      padding: 1vw;
+      text-align: center;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 1.5vw;
+      border-radius: 1vw;
+      transition: 0.3s ease;
+      pointer-events: none;
+    }
+    .universalTooltip::after { /*random ahh triangle*/
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -1vw;  /* Offset triangle */
+      border-width: 1vw;
+      border-style: solid;
+      border-color: rgba(0, 0, 0, 0.6) transparent transparent transparent;
+    }
+    }
+
+
+
+   
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   </style>
 </head>
 <body>
+  
   <!-- Particle Background -->
   <div id="particle-bg"></div>
+  <!-- Particleless Background (Settings)-->
+   <div style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(to top, royalblue, black);
+      z-index: -1; pointer-events: none; overflow: hidden;" id="particle-noparticle-bg"></div>
 
   <!--Popup-->
   <div id="beta-popup" class="betaPopup">
@@ -834,20 +1257,82 @@
 
   <!-- Main Content -->
   <p style="position: fixed; top: 93vh; left: 1vw; color: white; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 20px; z-index: 999">
-    Beta Version 1.9.3</p>
+    Beta Version 1.9.4</p>
 
   <div id="main-content" class="mainContent">
 
-    <!-- Main Page Header Menu -->
-    <!--<img class="mainPageMenuButton" src="https://anonymousbirb5100.github.io/birdhub-v2/images/icons/three-bar-icon.png"/>-->
 
-    <div class="titleSection">
-      <img src="https://anonymousbirb5100.github.io/birdhub-v2/images/birdhub-logo.png"
-      width="15%" height="12%">
-      <div style="flex-direction: column; white-space: nowrap;">
-        <h1>The <span style="text-shadow: 0px 0px 5px rgb(0, 132, 255); color: rgb(0, 132, 255); font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
-          Bird</span>hub</h1>
-        <p>Unblocked Browser Games</p>
+
+    <!-- Main Page Header Menu -->
+    <div class="mainPageMenuHeaderBackground" id="main-page-menu-header-background"></div>
+    <img class="mainPageMenuButton" src="images/icons/three-bar-icon.png"
+    onclick="openMainPageHeaderMenu()" id="main-page-menu-button"/>
+    <div class="mainPageMenuHeader" id="main-page-menu-header">
+      <div class="mainPageHeaderMenuInterface">
+
+        <div style="width: 100%; display: flex; justify-content: left;">
+
+        <img style="width: 9vh; height: 9vh;" src="images/birdhub-logo.png"/>
+        <p>The <span style="color: rgb(0, 132, 255); text-shadow: 0px 0px 3px rgb(0, 132, 255)">Bird</span>Hub</p>
+        </div>
+
+        <img  id="main-header-settings-button" style="width: 8vh; height: 8vh; transition: 0.3s ease; cursor: pointer;" 
+        src="images/icons/settings-icon.png" alt="Settings" onclick="openSettings();"/>
+
+        <a class="mainHeaderWebPageShortcuts" href="javascript:void(0)" 
+        onclick="document.getElementById('home-section').scrollIntoView({ behavior: 'smooth' }); openMainPageHeaderMenu();">Home</a>
+        <a class="mainHeaderWebPageShortcuts" href="javascript:void(0)" 
+        onclick="document.getElementById('browse-section').scrollIntoView({ behavior: 'smooth' }); openMainPageHeaderMenu();">Browse</a>
+        <a class="mainHeaderWebPageShortcuts" href="javascript:void(0)" 
+        onclick="document.getElementById('about-section').scrollIntoView({ behavior: 'smooth' }); openMainPageHeaderMenu();">About</a>
+
+      </div>
+    </div>
+
+
+
+
+    <!--Settings-->
+    <div class="settingsPopup" id="settings-popup">
+      <img class="settingsPopupCloseButton" src="images/icons/close-icon.png" alt="Close Settings" onclick="openSettings()"/>
+
+      <div style="display: flex; flex-direction: row;">
+        <img class="settingsPopupIcon" src="images/icons/settings-icon.png"/>
+        <h3>Settings</h3>
+      </div>
+
+      <div class="settingsPopupTabSection">
+        <div style="display: flex; flex-direction: row;">
+          <div class="settingsPopupTab active" style="margin-left: 0;" data-tab="tab1">Appearance</div>
+          <!--<div class="settingsPopupTab" data-tab="tab2">Tab 2</div>-->
+          <div class="settingsPopupTab" style="margin-right: 0;" data-tab="tab4">Other</div>
+        </div>
+      </div>
+      <div style=" border: 2px solid royalblue; background-color: black; border-radius: 0 0 12px 12px; position: relative; z-index: 1;">
+        <div class="settingsPopupContent active" id="tab1">
+          
+
+        <div class="settingsToggleWrapper">
+          <div class="settingsToggle" data-setting="disable-particles"></div>
+          <span class="settingsToggleLabel">Disable Background Particle Effect</span>
+        </div>
+
+
+        </div>
+        <div class="settingsPopupContent" id="tab2">
+          <p>This is the content for Tab 2.</p>
+        </div>
+        <div class="settingsPopupContent" id="tab3">
+          <p>This is the content for Tab 3.</p>
+        </div>
+        <div class="settingsPopupContent" id="tab4">
+          <p>
+            <div class="settingsToggleWrapper">
+              <div class="settingsToggle" data-setting="save-sorting-preferences"></div>
+              <span class="settingsToggleLabel">Save Sorting Preferences</span>
+            </div>
+          </p>
+        </div>
       </div>
     </div>
 
@@ -855,15 +1340,28 @@
 
 
 
+    
+    <div class="titleSection">
+      <img src="images/birdhub-logo.png"
+      width="15%" height="12%">
+      <div style="flex-direction: column; white-space: nowrap;">
+        <h1>The <span style="text-shadow: 0px 0px 5px rgb(0, 132, 255); color: rgb(0, 132, 255); font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
+          Bird</span>hub</h1>
+        <p>Online Browser Games</p>
+      </div>
+    </div>
+
+        
+
     <div class="homeSection">
-      <h1>Home</h1>
+      <h1 id="home-section">Home</h1>
       <div style="display:flex; flex-direction:column;">
 
 
         <!--New-->
         <div class="normalHomeSection">
           <div style="display: flex; flex-direction: row;">
-            <img style="width: 5vw; height: 5vw; margin-top: 1.5vw; margin-left: 1vw;" src="https://anonymousbirb5100.github.io/birdhub-v2/images/icons/home-section-icons/new-game-icon.png"/>
+            <img style="width: 5vw; height: 5vw; margin-top: 1.5vw; margin-left: 1vw;" src="images/icons/home-section-icons/new-game-icon.png"/>
             <h2 style="color: rgb(0, 242, 255); text-shadow: 0px 0px 3px rgb(0, 204, 255)">New Games</h2>
           </div>
 
@@ -880,14 +1378,19 @@
 
 
     <div class="browseSection">
-      <h1>Browse</h1>
+      <h1 id="browse-section">Browse</h1>
       
       <div style="display: flex; margin-bottom: 5vh;">
         <p class="gameCounter"><span style="color:rgb(0, 132, 255);text-shadow: 0px 0px 10px royalblue;" id="game-counter">X</span> Total <span id="game-counter-label">Games</span></p>
         <input id="main-page-search" class="mainPageSearch" placeholder="Search for games..."/>
 
         <div class="sortButtonDropdown" id="sort-button-dropdown">
-          <button class="mainPageSortButton" onclick="toggleSortDropdown()"></button>
+
+           <div class="universalTooltipContainer" style="position: relative;display: flex;width: min-content;justify-content: center;"> <!--Tooltip-->
+            <button class="mainPageSortButton" onclick="toggleSortDropdown()"></button>
+            <p class="universalTooltip" style="left: -9%; bottom: 100%;">Sort Games</p>
+          </div>
+
           <div class="sortButtonDropdownSelection">
             <div onclick="selectSort('Newest')">Sort: Newest</div>
             <div onclick="selectSort('Oldest')">Sort: Oldest</div>
@@ -905,22 +1408,46 @@
 
       <div class="gameButtons" id="all-games"></div> <!--All the games-->
 
-
-
     </div>
 
+    <div class="aboutSection">
+      <h1 id="about-section">About</h1>
+      <div class="aboutSectionInfoBox">
+        BirdHub is a curated collection of online games hosted via GitHub, created in February 2025 by AnonymousBirb5100. 
+        Whether you're at school, work, or just need a quick break, BirdHub is designed to be accessible and reliable—even in environments where other sites 
+        might be blocked.</br></br>
+
+        What began as a hobby project has grown into a full-fledged platform featuring 
+        a wide variety of games and web-based features. Countless hours have gone 
+        into refining every detail—from pixel-perfect design tweaks to deep dives across the internet to find the best games out there.</br></br>
+
+        Our mission is simple: to make your experience as smooth, fun, and frustration-free as possible!
+      </div>
+      </div>
+
   </div>
+
+
+
+
+
 
   <!--Game Menu-->
   <div id="game-menu-content" class="gameMenuContent">
     <div class="gameHeader">
       <img class="gameHeaderLogo" onclick="leaveGamePage()"
-      src="https://anonymousbirb5100.github.io/birdhub-v2/images/birdhub-logo.png"/> <!--Logo-->
+      src="images/birdhub-logo.png"/> <!--Logo-->
       <h1>The <span style="color: rgb(0, 132, 255); text-shadow: 0px 0px 5px rgb(0, 132, 255);">Bird</span>hub</h1>
       <div class="gameHeaderInterface">
-        <input id="game-header-search" class="gameHeaderSearch" type="text" placeholder="Search for games...">
+        
+        <div class="gamePageSearchContainer">
+          <input id="game-header-search" class="gameHeaderSearch" type="text" placeholder="Search for games..." 
+          oninput="showGameSearchPopup()">
+          <div id="game-page-search-bar-popup" class="gamePageSearchPopup" style="display: none;"></div>
+        </div>
+        
         <img id="game-header-search-button" class="gameHeaderSearchButton"
-        src="https://anonymousbirb5100.github.io/birdhub-v2/images/icons/search-icon.png">
+        src="images/icons/search-icon.png">
       </div>
     </div> <!--Shortcut button (home, statistics, version history, open blank, profile, random game)-->
 
@@ -942,14 +1469,30 @@
         <div class="gameTitleSectionButtons">
             <button id="open-new-tab-button" class="openNewTabButton"
             onclick="openCurrentGameTab()">
-              <img src="https://anonymousbirb5100.github.io/birdhub-v2/images/icons/open-new-tab-icon.png"/>
+              <img src="images/icons/open-new-tab-icon.png"/>
               Open in New Tab</button>
             <button class="fullscreenButton"
-            onclick="enterFullscreen()">
-              <img src="https://anonymousbirb5100.github.io/birdhub-v2/images/icons/fullscreen-icon.png"/>
+            onclick="askFullscreen()">
+              <img src="images/icons/fullscreen-icon.png"/>
               Fullscreen</button>
         </div>
     </div>
+
+    <div class="gamePageFunctionButtons">
+      <!--reload button-->
+      <div class="universalTooltipContainer" style="position:relative;display:flex;width:min-content;justify-content:center;">
+        <img src="images/icons/reload-icon.png" onclick="reloadGame()"></img>
+        <p class="universalTooltip" style="left: -5%; bottom: 100%;">Reload Game</p>
+      </div>
+      <!--reload upon fullscreen indicator-->
+      <div class="universalTooltipContainer" style="position:relative;display:flex;width:min-content;justify-content:center;">
+          <img style="position: relative; bottom: 0.5vw; width: 4vw; height: 4vw; cursor: auto;" 
+        id="reload-upon-fullscreen-indicator" src="images/icons/game-fullscreen-reload-on.png"/>
+        <p class="universalTooltip" style="left: -43%; bottom: 100%;" id="reload-upon-fullscreen-text">Reload upon Fullscreen:</p>
+      </div>
+
+    </div>
+
     <div class="gamePageDescription">
       <p id="game-page-description">Game Description</p></br>
       <p>Tags: <span id="game-page-game-tags"></span></p>
@@ -962,26 +1505,135 @@
   <!--Alerts-->
   <div class="alertBackground" id="alert">
     <div class="alertBox">
-      <h1>Alert</h1>
-      <p id="alert-text">Hello</p>
-      <button>why</button>
+      <h1 style="color: rgb(0, 132, 255)">Alert</h1>
+      <p id="alert-text">Alert Text</p>
+      <div style="display: flex; flex-direction: row;">
+        <button onclick="alertHide()">Cancel</button>
+        <button id="alert-button" onclick="alertUse()">Ok</button>
+      </div>
     </div>
   </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="hostfinder.js"></script> <!--External URL detector-->
+
   <script>
+    
+    // Load saved settings
+    document.querySelectorAll('.settingsToggle').forEach(toggle => {
+      const settingKey = toggle.dataset.setting;
+      const savedState = localStorage.getItem(settingKey);
+      if (savedState === 'on') {
+        toggle.classList.add('on');
+        toggleSetting(settingKey, true);
+      } else {
+        toggleSetting(settingKey, false);
+      }
+
+      toggle.addEventListener('click', () => {
+        toggle.classList.toggle('on');
+        const isOn = toggle.classList.contains('on');
+        localStorage.setItem(settingKey, isOn ? 'on' : 'off');
+        toggleSetting(settingKey, isOn);
+      });
+    });
+
+    //Variables for settings
+    window.mainPageSortingMethod = "Newest";
+
+    function toggleSetting(key, isOn) {
+      if (key == "disable-particles") { //Disable particles
+        if (isOn) {
+          document.getElementById("particle-bg").style.display = "none";
+          document.getElementById("particle-noparticle-bg").style.display = "block";
+        } else {
+          document.getElementById("particle-bg").style.display = "block";
+          document.getElementById("particle-noparticle-bg").style.display = "none";
+        }
+      } else if (key == "save-sorting-preferences") { //Save sorting preferences
+        if (isOn) {
+          window.settings_saveSortingPreferences = true;
+        } else {
+          window.settings_saveSortingPreferences = false;
+        }
+      }
+    };
+
+
+
+    // Tooltip
+    const containers = document.querySelectorAll('.universalTooltipContainer');
+
+    containers.forEach(container => {
+      const trigger = container.querySelector(':not(.universalTooltip)'); //Works with all elements
+      const tooltip = container.querySelector('.universalTooltip');
+
+      if (trigger && tooltip) {
+        trigger.addEventListener('mouseover', () => {
+          tooltip.style.opacity = '1';
+        });
+
+        trigger.addEventListener('mouseout', () => {
+          tooltip.style.opacity = '0';
+        });
+      }
+    });
+
+
+
+    window.alertPurpose = "";
+
+
     const allGamesList = [
-      { title: "Slope", img: "https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/slope-logo.png", link: "https://anonymousbirb5100.github.io/slope", shortdescription: "Pilot your ball through an endless neon landscape.", description: "Slope is an endless runner game where you control a ball rolling through a neon-themed landscape. Try not to fall over or crash into the red killbricks while accelerating at increasingly higher speeds!", tags: ['Skill', 'Timing', 'Action'] },
-      { title: "Retro Bowl", img: "https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/retro-bowl-logo.png", link: "https://anonymousbirb5100.github.io/retro-bowl", shortdescription: "Lead your dream football team to victory!", description: "Retro Bowl is a strategy-simulation retro game where you manage your own NFL team. Manage and train your team, devise plays, and keep your teams morale up. Can you win the Retro Bowl?", tags: ['Strategy', 'Sports'] },
-      { title: "Drive Mad", img: "https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/drive-mad-logo.png", link: "https://anonymousbirb5100.github.io/drive-mad", shortdescription: "Drive silly cars at high speeds through dangerous terrain!", description: "Drive Mad is a racing game where you must drive through levels with ever-changing obstacles, terrarin, and surprises on increasingly ridiculous cars. Good luck figuring out how to complete each level!", tags: ['Physics', 'Racing'] },
-      { title: "1v1.LOL", img: "https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/1v1-lol-logo.jpg", link: "https://anonymousbirb5100.github.io/1v1lol", shortdescription: "Fast-paced online shooter game similar to Fortnite.", description: '1v1.LOL is a very popular online FPS, or First Person Shooter, game. In this action-packed shooter, you face on against another player in an epic duel with varied weapons and building mechanics!', tags: ['Multiplayer', 'Shooter', 'Skill'] },
-      { title: "Minecraft", img: "https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/minecraft-logo.jpeg", link: "https://anonymousbirb5100.github.io/minecraft", shortdescription: "Build, explore, fight, and survive!", description: 'Minecraft is one of, if not the best-selling game in all of video game history. It is an open-world sandbox game where you can explore an infinitely-generated world, fight monsters, build your creations, and play with friends.', tags: ['Sandbox', 'Open-World', 'Multiplayer'] },
-      { title: "Soccer Random", img: "https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/soccer-random-logo.png", link: "https://anonymousbirb5100.github.io/soccer-random", shortdescription: "Play this chaotic goal-scoring game with just one button!", description: 'Soccer has never been more random. Play against either a CPU or a fellow friend. Control your two soccer players with just one button. Modifiers will change for each match to make it more exciting. Are you ready for the chaos?', tags: ['Sports', 'Multiplayer', 'Physics'] },
-      { title: "Basketball Random", img: "https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/basketball-random-logo.jpeg", link: "https://anonymousbirb5100.github.io/basketball-random", shortdescription: "Retro-themed basketball game, but with ragdolls!", description: "Basketball Random is a 2-player retro pixel gamewith ragdoll physics. Square up against a computer or a friend. Every new round, changing fields, changing players and changing balls will surprise you! Are you ready for the chaos?", tags: ['Sports', 'Multiplayer', 'Physics'] },
-      { title: "Polytrack", img: "https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/polytrack-logo.png", link: "https://anonymousbirb5100.github.io/polytrack", shortdescription: "Trackmania-style racing game with lots of wacky courses.", description: "Polytrack is a 3-D racing game inspired by Trackmaina. Combine loops, turns, and slopes into 13 action-packed levels to race through. This is a game that is sure to test your reflexes and timing skills.", tags: ['Racing', 'Skill', 'Physics'] },
-      { title: "Geometry Dash", img: "https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/geometry-dash-logo.png", link: "https://anonymousbirb5100.github.io/geometry-dash", shortdescription: "Jump, fly, and flip through this very famous music game.", description: "Geometry Dash is a very popular rhythm game with 15 levels from the original game for you to play with. Whether you are just trying out the first few levels or a seasoned veteran who is looking to tackle down the hardest, this game is for you! (Please note that this is an unofficial version.)", tags: ['Music', 'Skill', 'Action'] },
-      {title: "Moto X3M", img: "https://anonymousbirb5100.github.io/birdhub-v2/images/game-logos/moto-x3m-logo.png", link: "https://anonymousbirb5100.github.io/moto-x3m", shortdescription: "Drive through the courses while doing stunts!", description: "Moto X3M is a simple motorcycle racing game. Use the arrow keys to accelerate, brake, or flip your bike. Make it through the course as quickly as possible. Do stunts in the air to shave time off of your run!", tags: ["Racing", "Action", "Skill"] },
+      { title: "Slope", img: "images/game-logos/slope-logo.png", link: "games/slope", shortdescription: "Pilot your ball through an endless neon landscape.", description: "Slope is an endless runner game where you control a ball rolling through a neon-themed landscape. Try not to fall off the stage or crash into the red killbricks while accelerating at increasingly higher speeds!", tags: ['Skill', 'Timing', 'Action'] },
+      { title: "Retro Bowl", img: "images/game-logos/retro-bowl-logo.png", link: "games/retro-bowl", shortdescription: "Lead your dream football team to victory!", description: "Retro Bowl is a strategy-simulation retro game where you manage your own NFL team and try to win the 'Retro Bowl'. Manage and train your team, devise plays, and keep your teams morale up. Can you win the Retro Bowl?", tags: ['Strategy', 'Sports'] },
+      { title: "Drive Mad", img: "images/game-logos/drive-mad-logo.png", link: "games/drive-mad", shortdescription: "Drive silly cars at high speeds through dangerous terrain!", description: "Drive Mad is a racing game where you must drive through levels with ever-changing obstacles, terrarin, and surprises on increasingly ridiculous cars. Good luck figuring out how to complete each level!", tags: ['Physics', 'Racing'] },
+      { title: "1v1.LOL", img: "images/game-logos/1v1-lol-logo.jpg", link: "games/1v1lol", shortdescription: "Fast-paced online shooter game similar to Fortnite.", description: '1v1.LOL is a very popular online FPS, or First Person Shooter, game. In this action-packed shooter, you face on against another player online in an epic duel with varied weapons and building mechanics!', tags: ['Multiplayer', 'Shooter', 'Skill'] },
+      { title: "Minecraft", img: "images/game-logos/minecraft-logo.jpeg", link: "games/minecraft", shortdescription: "Build, explore, fight, and survive!", description: 'Minecraft is one of, if not the best-selling game in all of video game history. It is an open-world sandbox game where you can explore an infinitely-generated world, fight monsters, build your creations, and play with friends.', tags: ['Sandbox', 'Open-World', 'Multiplayer'] },
+      { title: "Soccer Random", img: "images/game-logos/soccer-random-logo.png", link: "games/soccer-random", shortdescription: "Play this chaotic goal-scoring game with just one button!", description: 'Soccer has never been more random. Play against either a CPU or a fellow friend. Control your two soccer players with just one button. Modifiers will change for each match to make it more exciting. Are you ready for the chaos?', tags: ['Sports', 'Multiplayer', 'Physics'] },
+      { title: "Basketball Random", img: "images/game-logos/basketball-random-logo.jpeg", link: "games/basketball-random", shortdescription: "Retro-themed basketball game, but with ragdolls!", description: "Basketball Random is a 2-player retro pixel gamewith ragdoll physics. Square up against a computer or a friend. Every new round, changing fields, changing players and changing balls will surprise you! Are you ready for the chaos?", tags: ['Sports', 'Multiplayer', 'Physics'] },
+      { title: "Polytrack", img: "images/game-logos/polytrack-logo.png", link: "games/polytrack", shortdescription: "Trackmania-style racing game with lots of wacky courses.", description: "Polytrack is a 3-D racing game inspired by Trackmaina. Combine loops, turns, and slopes into 13 action-packed levels to race through. This is a game that is sure to test your reflexes and timing skills.", tags: ['Racing', 'Skill', 'Physics'] },
+      { title: "Geometry Dash", img: "images/game-logos/geometry-dash-logo.png", link: "games/geometry-dash", shortdescription: "Jump, fly, and flip through this very famous music game.", description: "Geometry Dash is a very popular rhythm game with 15 levels from the original game for you to play with. Whether you are just trying out the first few levels or a seasoned veteran who is looking to tackle down the hardest, this game is for you! (Please note that this is an unofficial version.)", tags: ['Music', 'Skill', 'Action'] },
+      { title: "Moto X3M", img: "images/game-logos/moto-x3m-logo.png", link: "games/moto-x3m", shortdescription: "Drive through the courses while doing stunts!", description: "Moto X3M is a simple motorcycle racing game. Use the arrow keys to accelerate, brake, or flip your bike. Make it through the course as quickly as possible. Do stunts in the air to shave time off of your run!", tags: ["Racing", "Action", "Skill"] },
+      { title: "Idle Breakout", img: "images/game-logos/idle-breakout-logo.png", link: "games/idle-breakout", shortdescription: "Destroy bricks and upgrade balls in this unique idle game.", description: "Build the ultimate brick-busting machine to destroy billions of bricks. Upgrade your balls and buy prestige to break bricks faster. Idle breakout combines classic brick breaking with an insanely addicting idle loop.", tags: ["Idle", "Strategy"]},
+      { title: "Achievement Unlocked", img: "images/game-logos/achievement-unlocked-logo.png", link: "games/achievement-unlocked", shortdescription: "Earn 100 achievements in just 1 level. Observe to the max!", description: "Achievement Unlocked is a unique browser game about earning achievements. There is only 1 level layout, but you have to get 100 achievements to complete the game. Explore every nook of the level, try out random keyboard combinations, and more!", tags: ["Platformer", "Puzzle"]},
+      { title: "Learn to Fly", img: "images/game-logos/learn-to-fly-logo.jpeg", link: "games/learn-to-fly", shortdescription: "A classic Flash game about a penguin who wants to 'fly'.", description: "Learn to Fly is a game about a penguin who tries to fly using ridiculous gadgets like hang gliders and rockets. Buy upgrades and new equipment, collect research funds, and explore the penguin's ultimate adventure!", tags: ["Strategy", "Business", "Idle"]},
+      { title: "Learn to Fly 2", img: "images/game-logos/learn-2-fly-logo.jpeg", link: "games/learn-2-fly", shortdescription: "The sequel to the popular idle game Learn to Fly!", description: "Learn to Fly 2, also known as Learn 2 Fly, is about our penguin friend dying to destroy the iceberg that crushed his flying dreams. Even more tools and acessories than the first, use your beanbag penguin to destroy various obstacles and finally achieve your goal!", tags: ["Strategy", "Business", "Idle"]}
     ]
 
+
+    const reloadUponFullscreenGames = ["Slope", "Retro Bowl"];
 
 
    //Browse Section Filling-In
@@ -1226,24 +1878,149 @@
 
     javaGameSearch.addEventListener("keydown", function(event) {
       if (event.key === "Enter") {
-      mainPageSearchInput.value = javaGameSearch.value;
-      leaveGamePage();
-      useMainPageSearch();
+        mainPageSearchInput.value = javaGameSearch.value;
+        leaveGamePage();
+        useMainPageSearch();
+
+        document.getElementById("browse-section").scrollIntoView({ //Makes sure that the page lands in the Browse section top
+          behavior: "smooth",
+          block: "start"
+        });
       }
     });
     javaGameSearchButton.addEventListener("click", function() {
       if (javaGameSearch.value !== "") {
-      mainPageSearchInput.value = javaGameSearch.value;
-      leaveGamePage();
-      useMainPageSearch();
+        mainPageSearchInput.value = javaGameSearch.value;
+        leaveGamePage();
+        useMainPageSearch();
+
+        document.getElementById("browse-section").scrollIntoView({ //Makes sure that the page lands in the Browse section top
+          behavior: "smooth",
+          block: "start"
+        });
+        
       }
     });
+
+
+
+
+
+    //Mini popup in game search bar
+
+
+    //Shows 4 random games if there is no input
+    window.randomGames = []; // Storage, generation code in startGamePage()
+   
+    // Show popup when search bar is focused and empty
+    document.getElementById('game-header-search').addEventListener('focus', () => {
+      const input = document.getElementById('game-header-search');
+      const popup = document.getElementById('game-page-search-bar-popup');
+
+     if (input.value.trim() === '') {
+        popup.innerHTML = '';
+        randomGames.forEach(game => {
+          const resultDiv = document.createElement('div');
+          resultDiv.className = 'gamePageSearchPopupResult';
+          resultDiv.innerHTML = `
+            <img src="${game.img}" alt="${game.title}">
+            <span>${game.title}</span>
+          `;
+          resultDiv.onclick = () => {
+            startGamePage(game.link, game.img, game.title, game.description, game.tags);
+          };
+          popup.appendChild(resultDiv);
+        });
+        popup.style.display = 'block';
+      }
+    });
+
+    document.addEventListener('click', (event) => {
+      const input = document.getElementById('game-header-search');
+      const popup = document.getElementById('game-page-search-bar-popup');
+
+      // If the click is outside both the input and the popup, hide the popup
+      if (!input.contains(event.target) && !popup.contains(event.target)) {
+        popup.style.display = 'none';
+      }
+    });
+
+
+
+
+
+    function showGameSearchPopup() {
+    const input = document.getElementById('game-header-search');
+    const popup = document.getElementById('game-page-search-bar-popup');
+    const query = input.value.toLowerCase().replace(/\s+/g, '');
+    popup.innerHTML = ''; // Clear previous results
+
+    if (query === '') {
+      popup.style.display = 'none';
+      return;
+    }
+    // Eaxct same search algorithm as the Main page search bar
+    const exactMatch = [];
+    const looseMatch = [];
+    allGamesList.forEach(game => {
+      const title = game.title.toLowerCase().replace(/\s+/g, '');
+      let pos = 0;
+      const exact = [...query].every(char => {
+        const i = title.indexOf(char, pos);
+        if (i === -1) return false;
+        pos = i + 1;
+        return true;
+      });
+      const loose = [...query].every(char => title.includes(char));
+      if (exact) exactMatch.push(game);
+      else if (loose) looseMatch.push(game);
+    });
+
+
+
+    // Combine and limit to 4 results
+    const results = [...exactMatch, ...looseMatch].slice(0, 4);
+
+    if (results.length === 0) {
+      popup.innerHTML = `<div class="gamePageSearchPopupNoresults">No results found</div>`;
+    } else {
+      results.forEach(game => {
+        const resultDiv = document.createElement('div');
+        resultDiv.className = 'gamePageSearchPopupResult';
+        // Create result button with image and title
+        resultDiv.innerHTML = `
+          <img src="${game.img}" alt="${game.title}">
+          <span>${game.title}</span>
+        `;
+        // On click, show alert with title and image link
+        resultDiv.onclick = () => {
+          startGamePage(game.link, game.img, game.title, game.description, game.tags);
+        };
+        popup.appendChild(resultDiv);
+      });
+    }
+    popup.style.display = 'block'; // Show the pop-up
+  }
+
+
+
 
 
 
 
     //Sorting Games
-    window.mainPageSortingMethod = "Newest";
+    if (localStorage.getItem("savedSortingMethod") === null) { //If value is nonexistent than sets it to default
+      localStorage.setItem("savedSortingMethod", "Newest");
+    }
+    if (settings_saveSortingPreferences == true) {
+      window.mainPageSortingMethod = localStorage.getItem("savedSortingMethod");
+    } else {
+      window.mainPageSortingMethod = "Newest";
+    }
+
+    selectSort(mainPageSortingMethod);
+
+
     document.getElementById("main-page-sorting-method-text").innerText = mainPageSortingMethod;
 
     function toggleSortDropdown() {
@@ -1299,7 +2076,9 @@
         allGames.appendChild(newGameButton);
       });
 
-
+    if (settings_saveSortingPreferences) {
+      localStorage.setItem("savedSortingMethod", method);
+    }
     useMainPageSearch();
     autoAdjustGameTitleSize();
     };
@@ -1314,16 +2093,115 @@
 
 
 
+    //Main page header
+    function openMainPageHeaderMenu() {
+      const javaMainHeaderBackground = document.getElementById("main-page-menu-header-background");
+      const javaMainHeaderButton = document.getElementById("main-page-menu-button");
+      const javaMainHeader = document.getElementById("main-page-menu-header");
+
+      const isHidden = window.getComputedStyle(javaMainHeaderBackground).pointerEvents === "none"; //Checks if the background is hidden or not
+      if (isHidden) {
+        javaMainHeaderBackground.style.pointerEvents = "auto";
+        javaMainHeaderBackground.style.opacity = 0;
+
+        void javaMainHeaderBackground.offsetWidth; //Reflow thingamijig
+        javaMainHeaderBackground.style.opacity = 1;
+
+        javaMainHeaderButton.style.transform = "rotate(180deg)";
+       javaMainHeader.style.transform = "translateX(0vw)";
+
+      } else {
+        javaMainHeaderBackground.style.opacity = 0;
+        javaMainHeaderBackground.style.pointerEvents = "none";
+
+        javaMainHeaderButton.style.transform = "rotate(0deg)";
+        javaMainHeader.style.transform = "translateX(-100vw)";
+      }
+
+    };
+
+    function openSettings() { //Open settings menu
+      const javaMainHeaderBackground = document.getElementById("main-page-menu-header-background");
+      const javaMainHeaderButton = document.getElementById("main-page-menu-button");
+      const javaMainHeader = document.getElementById("main-page-menu-header");
+      const isFromHeaderMenu = window.getComputedStyle(javaMainHeaderBackground).pointerEvents === "auto";
+      const javaSettingsPopup = document.getElementById("settings-popup");
+
+      function isOpen(el) { //Complex matrix stuff (all you need to know is that it find finds out is transform is translateY(0). )
+        const transform = window.getComputedStyle(el).transform;
+      if (transform === 'none') return false;
+        const match = transform.match(/matrix\(([^)]+)\)/);
+        if (!match) return false;
+        const values = match[1].split(',').map(parseFloat);
+        const translateY = values[5]; // 6th value is Y translation
+        return translateY === 0;
+      }
+
+
+      const isPopupOpen = isOpen(javaSettingsPopup);
+
+      if (!isPopupOpen) { //open popup
+        if (isFromHeaderMenu) {
+          javaMainHeaderBackground.style.zIndex = 9003;
+          javaMainHeaderButton.style.transform = "rotate(0deg)";
+          javaMainHeader.style.transform = "translateX(-100vw)";
+
+          javaSettingsPopup.style.display = "flex";
+          void javaSettingsPopup.offsetWidth;
+          javaSettingsPopup.style.transform = "translateY(0)";
+        } else {
+          javaMainHeaderBackground.style.pointerEvents = "auto";
+          javaMainHeaderBackground.style.opacity = 0;
+          void javaMainHeaderBackground.offsetWidth;
+          javaMainHeaderBackground.style.opacity = 1;
+          javaSettingsPopup.style.display = "flex";
+        }
+      } else { //close popup
+        javaSettingsPopup.style.transform = "translateY(-100vw)";
+        javaMainHeaderBackground.style.zIndex = 9000;
+        javaMainHeaderBackground.style.pointerEvents = "none";
+        javaMainHeaderBackground.style.opacity = 0;
+      }
+    }
+
+    //Setting Tabs
+    const tabs = document.querySelectorAll('.settingsPopupTab');
+    const contents = document.querySelectorAll('.settingsPopupContent');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active class from all tabs and contents
+        tabs.forEach(t => t.classList.remove('active'));
+        contents.forEach(c => c.classList.remove('active'));
+
+        // Add active class to clicked tab and corresponding content
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
+      });
+    });
+
+
+    // Settings loader has been moved to top
+
+
+
+
+
+
+
+
+
+
 
     //game menu
     function getRandomTip() { //well, get random tip
     const tips = [ //tip list
         //"BirdHub has 6 games for you to try out!",
-        //"TIP: Click the 3-lined button in the top-left to show the shortcut menu.",
+        "TIP: Click the 3-lined button in the top-left of the Main page to show the Main page header menu.",
         "Hey, how's your day?",
         "BirdHub gets regular updates with new games and the occasional new web feature.",
         "TIP: Use the search bar on top of the BROWSE section or in the game header to find your games quickly.",
-        //"TIP: Check out the Settings (available in the shortcut menu and the game header) to customize your experience and more.",
+        "TIP: Check out the Settings (available in the header menu on the Main and Game pages) to customize your experience and more.",
         //"Found a bug or glitch? Click the Report button in the shortcut menu.",
         "If you're tired, take a break and get some sun."
     ];
@@ -1348,11 +2226,11 @@
     }
     function gamePageMoreGamesDisplay() {
       const javaGamePageMoreGames = document.getElementById("game-page-more-games");
-      var selectedGames = getRandomGames(6);
+      var selectedGames = getRandomGames(8);
 
       function checkIfCurrentGameMatches() {
         while (true) {
-          selectedGames = getRandomGames(6);
+          selectedGames = getRandomGames(8);
           let currentGameInSection = false;
           selectedGames.forEach(game => {    //checks to make sure the current game doesn't get displayed
             if (game.link == URLForOpenNewTabButton) { //if games don't change, then it's just luck that all the same games got chosen
@@ -1433,11 +2311,23 @@
       loadingScreenTip.innerText = getRandomTip(); //set random tip
       loadingScreen.style.display = "flex"; // Show loading screen
       gamePageIframe.src = gameURL;
+      gamePageIframe.addEventListener("load", function() {
+        loadingScreen.style.display = "none";
+      });
 
-      gamePageIframe.onload = function() {
-        loadingScreen.style.display = "none"; // Hide loading-screen when iframe loads
-      };
+      const javaReloadUponFullscreenIndicator = document.getElementById("reload-upon-fullscreen-indicator");
+      if (reloadUponFullscreenGames.includes(gameTitle)) {
+        javaReloadUponFullscreenIndicator.src = "images/icons/game-fullscreen-reload-off.png";
+        document.getElementById("reload-upon-fullscreen-text").innerText = "Reload upon Fullscreen: Yes";
+      } else {
+        javaReloadUponFullscreenIndicator.src = "images/icons/game-fullscreen-reload-on.png"
+        document.getElementById("reload-upon-fullscreen-text").innerText = "Reload upon Fullscreen: No";
+      }
+
       gamePageMoreGamesDisplay();
+      //Search bar popup generation
+      const shuffled = [...allGamesList].sort(() => 0.5 - Math.random());
+      randomGames = shuffled.slice(0, 4);
     };
 
     function leaveGamePage() {
@@ -1450,15 +2340,25 @@
     };
 
 
+    //reload
+    function reloadGame() {
+      const gamePageIframe = document.getElementById("game-iframe");
+      gamePageIframe.src = gamePageIframe.src;
+    }
+
+
     //fullscreen
 
     function askFullscreen() {
-      const javaAlert = document.getElementById("alert");
-      const javaAlertText = document.getElementById("alert-text");
-      const javaAlertBlueText = document.getElementById("alert-blue-text");
-      javaAlert.style.display = "flex";
-      javaAlertText.innerText = "does not fullscreen properly due to the design of the game. Do you still wish to fullscreen?";
-      javaAlertBlueText.innerText = fullscreenErrorGameTitle + " ";
+      if (reloadUponFullscreenGames.includes(fullscreenErrorGameTitle)) {
+        alertPurpose = "reload-upon-fullscreen";
+        const javaAlert = document.getElementById("alert");
+        const javaAlertText = document.getElementById("alert-text");
+        javaAlert.style.display = "flex";
+        javaAlertText.innerText = "Due to the design of this game, it needs to reload in order to fullscreen properly. Please visit the Settings for more information.";
+      } else {
+        enterFullscreen();
+      }
     }
     function enterFullscreen() {
       const javaGameIframe = document.getElementById("game-iframe");
@@ -1529,6 +2429,19 @@
 
     //End Game Menu
 
+
+
+    function alertUse() {
+      const javaAlert = document.getElementById("alert");
+      javaAlert.style.display = "none";
+      if (alertPurpose === "reload-upon-fullscreen") {
+        enterFullscreen();
+        document.getElementById("game-iframe").src = document.getElementById("game-iframe").src;
+      }
+    }
+    function alertHide() {
+      document.getElementById("alert").style.display = "none";
+    }
 
   </script>
 </body>
