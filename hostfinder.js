@@ -9,7 +9,9 @@
 
   const isOfficialHost = officialHosts.includes(window.location.hostname); //Domain matching
 
-  if (isEmbedded || !isOfficialHost) { //I said no editing this, please!
+  if (isEmbedded) {
+    window.location.href = detectionPopupPage;
+  } else if (!isOfficialHost || !((window.location.hostname === "anonymousbirb5100.github.io" && window.location.pathname.startsWith("/birdhub-v2")))) { //I said no editing this, please!
     window.location.href = detectionPopupPage;
   }
 })();
