@@ -15,4 +15,4 @@ The original BirdHub is a browser game portal that hosts over 50 games, with man
 | https://birbcade.pages.dev | In Progress |
 
 > [!IMPORTANT]
-> This website, along with this README, are still under heavy development. This README is subject to frequent changes!
+> This website, along with this README, is still under heavy development. This README is subject to frequent changes!
