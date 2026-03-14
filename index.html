@@ -20,8 +20,8 @@
       width: 100%;
       height: 100%;
       background-image: linear-gradient(to top, royalblue, black);
-      z-index: -1; /* Ensures the particles stay behind content */
-      pointer-events: none; /* Prevents interference with user interaction */
+      z-index: -1;
+      pointer-events: none;
       overflow: hidden;
     }
 
@@ -29,25 +29,25 @@
       position: absolute;
       width: var(--size); /* Dynamically set size for each particle */
       height: var(--size);
-      background: white; /* Pure white color */
-      border-radius: 50%; /* Makes the particles circular */
-      opacity: 0; /* Starts as invisible */
-      box-shadow: 0 0 5px rgba(255, 255, 255, 0.9); /* Subtle glow effect */
+      background: white; 
+      border-radius: 50%;
+      opacity: 0;
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.9);
       animation: float var(--speed) linear forwards; /* Uses custom speed per particle */
     }
 
     /* Keyframe animation to control movement */
     @keyframes float {
       0% {
-        transform: translate(0, 0); /* Start at the bottom */
-        opacity: 0; /* Invisible at start */
+        transform: translate(0, 0);
+        opacity: 0;
       }
       20% {
         opacity: var(--max-opacity); /* Fade in to randomly assigned transparency */
       }
       100% {
         transform: translate(var(--x), calc(-80vh - var(--y-offset))); /* Moves up */
-        opacity: 0; /* Fades out at the end */
+        opacity: 0;
       }
     }
       /*End of Particle*/
@@ -125,7 +125,7 @@
       .normalHomeSection {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        align-items: center;
         background-color: rgba(0, 0, 0, 0.5);
         margin: 2vw;
         padding: 2vw;
@@ -137,26 +137,50 @@
         inherits: false;
         initial-value: 0deg;
       }
-
-      .homeSectionGameButtons { /* This is on top of the current CSS below*/
+      .homeSectionGameButtons {
         border: 4px solid transparent;
+        --effect-color: aqua; /* Different border colors can be set via style="--effect-color: [a color];" */
 
-        /* Two backgrounds: solid center + gradient border */
         background:
           linear-gradient(white, white) padding-box,
-          conic-gradient(from var(--angle), black, aqua, black) border-box;
-
+          conic-gradient(from var(--angle), black, var(--effect-color), black) border-box;
         background-clip: padding-box, border-box;
         background-origin: border-box;
-
-        /* Drive the angle */
         --angle: 0deg;
         animation: homeSectionButtonEffect 1s linear infinite;
       }
-      
-
       @keyframes homeSectionButtonEffect {
         to { --angle: 360deg; }
+      }
+
+      /* Other buttons for home section */
+      .homeSectionRandomGamesGenerateButton {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        color: white;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 2vw;
+        background-color: rgba(0, 0, 0, 0.4);
+        border-radius: 1vw;
+        border: none;
+        transition: 0.2s ease;
+      }
+      .homeSectionRandomGamesGenerateButton img {
+        aspect-ratio: 1/1;
+        width: 3vw;
+        margin: 0.5vw;
+      }
+      .homeSectionRandomGamesGenerateButton:hover {
+        transform: translateY(-0.5vw);
+        box-shadow: 0px 10px 10px white;
+      }
+      .homeSectionRandomGamesGenerateButton:active { /* Button effect when clicked */
+        transform: translateY(0.5vw);
+        box-shadow: 0px 0px 0px white;
       }
 
 
@@ -251,12 +275,14 @@
 
 
       .gameCounter {
+        position: relative;
+        right: 5vw;
         color: white;
         font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         font-size: 3vw;
         margin: 20px;
         margin-bottom: 0;
-        margin-right: 20vw;
+        margin-right: 0;
         line-height: 0;
       }
       .mainPageSearch {
@@ -278,36 +304,26 @@
         font-size: 1.5vw;
         gap: 10px;
       }
+      /* OUTDATED, uses the same as searchByTagButton now
       .mainPageSortButton {
-        display: flex;
-        width: 4vw;
-        height: 4vw;
-        background-image: url("images/icons/sort-icon.png"); /* Sorting icon image */
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-color: rgba(0, 0, 0, 0.7);
-        border: 3px solid rgba(50, 50, 50, 0.5);
-        border-radius: 40%;
-        margin-left: 2vw;
-        cursor: pointer;
-        overflow: hidden;
-        transition: 0.3s ease;
-      }
-      .mainPageSortButton:hover, .mainPageSearch:hover {
+        display: flex;width: 4vw;height: 4vw;background-image: url("images/icons/sort-icon.png");background-size: cover;background-position: center;
+        background-repeat: no-repeat;background-color: rgba(0, 0, 0, 0.7);border: 3px solid rgba(50, 50, 50, 0.5);border-radius: 40%;margin-left: 2vw;
+        cursor: pointer;overflow: hidden;transition: 0.3s ease;
+      }*/
+      .mainPageSortButton:hover, .mainPageSearch:hover, .searchByTagButton:hover {
         transform: translateY(-5px);
         box-shadow: 0px 10px 3px black;
       }
 
-      .sortButtonDropdown {
+      .sortButtonDropdown, .searchByTagDropdown {
         position: relative;
         display: inline-block;
       }
-      .sortButtonDropdownSelection {
+      .sortButtonDropdownSelection, .searchByTagDropdownSelection {
         display: none;
         position: absolute;
-        top: 8vh;
-        left: 0;
+        top: 9vh;
+        left: 1.7vw;
         color: white;
         font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         font-size: 1vw;
@@ -317,16 +333,44 @@
         z-index: 1000;
         width: 9vw;
       }
-      .sortButtonDropdownSelection div {
+      .searchByTagDropdownSelection {
+        height: 30vh;
+        overflow: scroll;
+      }
+      .sortButtonDropdownSelection div, .searchByTagDropdownSelection div {
         padding: 10px;
         border-radius: 25px;
         cursor: pointer;
       }
-      .sortButtonDropdownSelection div:hover {
+      .sortButtonDropdownSelection div:hover, .searchByTagDropdownSelection div:hover {
         background-color: rgba(70, 70, 70, 0.7);
       }
-      .sortButtonDropdown.open .sortButtonDropdownSelection {
+      .sortButtonDropdown.open .sortButtonDropdownSelection, .searchByTagDropdown.open .searchByTagDropdownSelection {
         display: block;
+      }
+
+
+      .mainPageSortButton, .searchByTagButton {
+        display: flex;
+        width: min-content;
+        height: 4vw;
+        background-color: rgba(0, 0, 0, 0.7);
+        border: 3px solid rgba(50, 50, 50, 0.5);
+        border-radius: 1.5vw;
+        padding: 0.5vw;
+        margin-left: 2vw;
+        cursor: pointer;
+        overflow: hidden;
+        transition: 0.3s ease;
+      }
+
+      .mainPageSortButton p, .searchByTagButton p {
+        height: 100%;
+        color: white;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 1.5vw;
+        margin: 0.5vw;
+        margin-bottom: 0;
       }
 
 
@@ -395,11 +439,14 @@
       #main-header-settings-button:hover {
         transform: rotate(180deg);
       }
+      #main-header-whats-new-button:hover {
+        transform: rotate(144deg) scale(1.1) translateY(-5px);
+      }
       .mainHeaderWebPageShortcuts {
         text-decoration: none;
         color: white; text-shadow: none;
         position: relative;
-        top: 2vw;
+        top: 2.5vw;
         margin-left: 1vw;
         margin-right: 2vw;
         font-size: 2vw;
@@ -411,8 +458,8 @@
         text-shadow: 0px 0px 3px rgb(0, 132, 255);
       }
 
-
-      .settingsPopup {
+      /* xSettings */
+      .settingsPopup, .otherInfoPopup {
         display: none;
         position: fixed;
         flex-direction: column;
@@ -491,7 +538,7 @@
         display: none;
         padding: 2vw;
         width: 100%;
-        height: 20vw;
+        height: 40vh;
         font-size: 1.5vw;
         animation: settingsPopupFadeIn 0.3s ease-in-out;
       }
@@ -503,15 +550,6 @@
         from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: translateY(0); }
       }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -561,6 +599,107 @@
 
 
 
+
+      /* xWhat's New Popup */
+      #whats-new-popup-overlay { /*overlay*/
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.2);
+        display: none;
+        justify-content: center;
+        z-index: 9004;
+        align-items: center;
+      }
+      .whatsNewPopup {
+        background: rgba(0, 0, 0, 0.8);
+        border: 3px solid rgb(0, 191, 255);
+        width: 70%;
+        max-width: 80vw;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 0 1vw rgb(0, 191, 255);
+        position: relative;
+      }
+      .whatsNewPopupPageContainer {
+        height: 50vh;
+        overflow: hidden;
+        position: relative;
+      }
+      .whatsNewPopupPage {
+        display: none;
+        height: 100%;
+        padding: 10px;
+        color: white;
+        font-size: 1.5vw;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        overflow: scroll;
+      }
+      .whatsNewPopupPage.active {
+        display: block;
+      }
+      .whatsNewPopupPageTitle {
+        color: rgb(0, 132, 255);
+        font-weight: bold;
+        font-size: 4vw;
+        line-height: 0;
+        text-shadow: 0px 0px 10px rgb(0, 132, 255);
+      }
+
+      .whatsNewPopupCarousel {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 1vw;
+        gap: 1vw;
+      }
+      .whatsNewPopupNavButton {
+        background-color: rgba(0, 0, 0, 0.6);
+        border: 2px solid white;
+        padding: 0.5vw;
+        font-size: 1.5vw;
+        opacity: 1;
+        border-radius: 0.5vw;
+        transition: opacity 0.2s;
+      }
+      .whatsNewPopupNavButton img {
+        width: 1vw;
+        height: 1vw;
+      }
+      .whatsNewPopupNavButton.disabled {
+        opacity: 0.3;
+        pointer-events: none;
+      }
+      .whatsNewPopupDotContainer {
+        display: flex;
+        gap: 8px;
+      }
+      .whatsNewPopupDot {
+        width: 3vh;
+        height: 3vh;
+        border-radius: 50%;
+        background: #333333;
+        transition: background 0.2s;
+      }
+      .whatsNewPopupDot.active {
+        background: rgb(0, 132, 255);
+      }
+
+      .whatsNewPopupConfirm {
+        width: 100%;
+        padding: 12px;
+        font-size: 1.5vw;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        border: none;
+        border-radius: 8px;
+        background: rgb(0, 132, 255);
+        color: white;
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      .whatsNewPopupConfirm.enabled {
+        opacity: 1;
+        cursor: pointer;
+      }
 
 
 
@@ -1260,11 +1399,10 @@
   </div>
 
   <!-- Main Content -->
-  <p style="position: fixed; top: 93vh; left: 1vw; color: white; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 20px; z-index: 999">
-    Beta Version 1.9.41</p>
+  <p id="version-number-text" style="position: fixed; top: 93vh; left: 1vw; color: white; 
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 20px; z-index: 999"></p>
 
   <div id="main-content" class="mainContent">
-
 
 
     <!-- Main Page Header Menu -->
@@ -1276,12 +1414,17 @@
 
         <div style="width: 100%; display: flex; justify-content: left;">
 
-        <img style="width: 9vh; height: 9vh;" src="images/birdhub-logo.png"/>
-        <p>The <span style="color: rgb(0, 132, 255); text-shadow: 0px 0px 3px rgb(0, 132, 255)">Bird</span>Hub</p>
+          <img style="width: 9vh; height: 9vh;" src="images/birdhub-logo.png"/>
+          <p>The <span style="color: rgb(0, 132, 255); text-shadow: 0px 0px 3px rgb(0, 132, 255)">Bird</span>Hub</p>
         </div>
-
-        <img  id="main-header-settings-button" style="width: 8vh; height: 8vh; transition: 0.3s ease; cursor: pointer;" 
+        <!--Settings-->
+        <img  id="main-header-settings-button" style="width: 8vh; height: 8vh; margin-left: 1vw;
+         margin-right: 1vw; transition: 0.3s ease; cursor: pointer;" 
         src="images/icons/settings-icon.png" alt="Settings" onclick="openSettings();"/>
+        <!--What's New-->
+        <img id="main-header-whats-new-button" style="width: 7vh; height: 7vh; margin-left: 1vw;
+         margin-right: 1vw; margin-top: 0.5vh; transition: 0.3s ease; cursor: pointer;"
+        src="images/icons/star-icon.png" alt="What's New"/>
 
         <a class="mainHeaderWebPageShortcuts" href="javascript:void(0)" 
         onclick="document.getElementById('home-section').scrollIntoView({ behavior: 'smooth' }); openMainPageHeaderMenu();">Home</a>
@@ -1342,6 +1485,61 @@
 
 
 
+    <!--What's New-->
+<div id="whats-new-popup-overlay">
+  <div class="whatsNewPopup">
+
+    <div class="whatsNewPopupPageContainer">
+      <div class="whatsNewPopupPage active">
+        <div style="display:flex;justify-content:center;padding:0;margin:0;"><p class="whatsNewPopupPageTitle">What's New This Update</p></div>
+        • This popup :/</br>
+        • 4 new games!</br>
+        • Added tags to games, you can now search for Platformer, Skill, Puzzle, etc. related games.</br>
+        • Don't know what game to play next? New section in the "Home" section: random games. It displays 4 randomly-picked games, along
+        with a button to pick 4 new randomly-picked games.</br></br>
+        What's (hopefully) coming next major update:</br>
+        • Tab cloaking options in the settings (along with an about:blank shortcut in the main header)</br>
+        • New Section: BirdHub V2 Emulator -> an emulator that can run retro games, embedded in the website</br>
+        • New Section: BirdHub Originals -> software and games developed by our own dev team!</br>
+        • New BirdHub V2 Links (including the main one, play.birdhubofficial.net), along with an openable popup for links</br>
+        ...and much more!</br></br>
+      </div>
+      <div class="whatsNewPopupPage">
+        <div style="display:flex;justify-content:center;padding:0;margin:0;"><p class="whatsNewPopupPageTitle">New to BirdHub?</p></div>
+        If you're new to BirdHub, first of all, welcome! We hope that you enjoy our website, our games, and your freedom!</br>
+        To start off, finish reading this notice. Click on any game in the "Browse" section, or pick up a quick one in the "Home" section.</br>
+        BirdHub V2 has being designed with intuitivity in mind, but there are still some things to take note of:</br></br>
+          • Click the 3-bar button on the top-left of the main page (it does not appear when you're playing a game) to open the header menu. Here, you can
+          customize your settings, read more information about this website, and more.</br>
+          • Many buttons have tooltips (brief descriptions) that will hover over them. Read them if you're confused!</br>
+          • There is one search bar in the main page and one search bar on the game page (the page that appears when you're playing a game).
+          The search bar in the game page has a special feature that lets you get the results of your search query without having to leave your game (and the game page).
+        </br></br>
+      </div>
+      <div class="whatsNewPopupPage">
+        <div style="display:flex;justify-content:center;padding:0;margin:0;"><p class="whatsNewPopupPageTitle">Reminder</p></div>
+        Click the button on the top-left of the main page, then click the star icon to re-open this popup.
+        <img style="max-width: 63vw;" src="images/whats-new-screenshot.png"/>
+        <img style="max-width: 63vw; margin-top: 2vh;" src="images/whats-new-screenshot-2.png"/>
+      </div>
+    </div>
+
+    <div class="whatsNewPopupCarousel">
+      <button id="whats-new-popup-previous-button" class="whatsNewPopupNavButton">
+        <img src="images/icons/next-previous-icon.png" style="transform: rotate(180deg);" alt="Next Page"/>
+      </button>
+      <div class="whatsNewPopupDotContainer"></div>
+      <button id="whats-new-popup-next-button" class="whatsNewPopupNavButton">
+        <img src="images/icons/next-previous-icon.png" alt="Next Page"/>
+      </button>
+    </div>
+
+    <button class="whatsNewPopupConfirm" id="whats-new-popup-confirm" disabled>Awesome</button>
+  </div>
+</div>
+
+
+
 
 
     
@@ -1359,7 +1557,7 @@
 
     <div class="homeSection">
       <h1 id="home-section">Home</h1>
-      <div style="display:flex; flex-direction:column;">
+      <div style="display:flex; flex-direction:row;">
 
 
         <!--New-->
@@ -1371,6 +1569,22 @@
 
           <div style="display: flex; flex-direction: row;" id="home-section-new-games-container1"></div>
           <div style="display: flex; flex-direction: row;" id="home-section-new-games-container2"></div>
+        </div>
+
+        <!--Random Game-->
+          <div class="normalHomeSection">
+          <div style="display: flex; flex-direction: row;">
+            <img style="width: 5vw; height: 5vw; margin-top: 1.5vw;" src="images/icons/home-section-icons/random-game-icon.png"/>
+            <h2 style="margin-left: 1vw; color: white; text-shadow: 0px 0px 3px white">Random Games</h2>
+          </div>
+
+          <div style="display: flex; flex-direction: row;" id="home-section-random-games-container1"></div>
+          <div style="display: flex; flex-direction: row;" id="home-section-random-games-container2"></div>
+          
+          <button class="homeSectionRandomGamesGenerateButton" id="home-section-random-games-generate-button">
+            <img src="images/icons/dice-icon.png"/>
+            Generate!
+          </button>
         </div>
 
 
@@ -1391,8 +1605,11 @@
         <div class="sortButtonDropdown" id="sort-button-dropdown">
 
            <div class="universalTooltipContainer" style="position: relative;display: flex;width: min-content;justify-content: center;"> <!--Tooltip-->
-            <button class="mainPageSortButton" onclick="toggleSortDropdown()"></button>
-            <p class="universalTooltip" style="left: -9%; bottom: 100%;">Sort Games</p>
+            <button class="mainPageSortButton" id="main-page-sort-button" onclick="toggleSortDropdown()">
+              <img src="images/icons/sort-icon.png"/>
+              <p id="main-page-sorting-method-text">Sorting Method</p>
+            </button>
+            <p class="universalTooltip" style="left: 20%; bottom: 100%;">Sort Games</p>
           </div>
 
           <div class="sortButtonDropdownSelection">
@@ -1401,11 +1618,40 @@
             <div onclick="selectSort('A-Z')">Sort: A-Z</div>
           </div>
         </div>
+        
+        <div class="searchByTagDropdown" id="search-by-tag-dropdown">
+          <div class="universalTooltipContainer" style="position: relative;display: flex;width: min-content;justify-content: center;"> <!--Tooltip-->
+            <button class="searchByTagButton" id="search-by-tag-button" onclick="toggleSearchByTagDropdown()">
+              <img src="images/icons/tag-icon.png"/>
+              <p id="search-by-tag-text">None</p>
+            </button>
+            <p class="universalTooltip" style="left: 20%; bottom: 100%;">Search by Tag</p>
+          </div>
+
+          <div class="searchByTagDropdownSelection">
+            <!--skill timing action strategy sports physics racing shooter sandbox open-world multiplayer music idle platformer puzzle business simple-->
+            <div onclick="searchByTag('None')">None</div>
+            <div onclick="searchByTag('Action')">Action</div>
+            <div onclick="searchByTag('Business')">Business</div>
+            <div onclick="searchByTag('Casual')">Casual</div>
+            <div onclick="searchByTag('Idle')">Idle</div>
+            <div onclick="searchByTag('Multiplayer')">Multiplayer</div>
+            <div onclick="searchByTag('Music')">Music</div>
+            <div onclick="searchByTag('Open-World')">Open-World</div>
+            <div onclick="searchByTag('Physics')">Physics</div>
+            <div onclick="searchByTag('Platformer')">Platformer</div>
+            <div onclick="searchByTag('Puzzle')">Puzzle</div>
+            <div onclick="searchByTag('Sandbox')">Sandbox</div>
+            <div onclick="searchByTag('Shooter')">Shooter</div>
+            <div onclick="searchByTag('Skill')">Skill</div>
+            <div onclick="searchByTag('Sports')">Sports</div>
+            <div onclick="searchByTag('Strategy')">Strategy</div>
+            <div onclick="searchByTag('Timing')">Timing</div>
+          </div>
+        </div>
+  
       </div>
 
-      <p style="color: white; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      font-size: 2vw; text-shadow: 0px 0px 2px white;">Sorting By: <span id="main-page-sorting-method-text"></span> 
-      <!--<span style="color:rgb(0, 132, 255); text-shadow: 0px 0px 2px rgb(0, 132, 255)"> | </span>Filtering By:--></p>
       <p id="main-search-noresults" class="mainSearchNoresults"></p>
 
 
@@ -1577,6 +1823,8 @@
   <!--<script src="hostfinder.js"></script> <!--External URL detector-->
 
   <script>
+
+    const SITE_VERSION = "1.9.5"; // Version constant
     
     // Load saved settings
     document.querySelectorAll('.settingsToggle').forEach(toggle => {
@@ -1597,8 +1845,9 @@
       });
     });
 
-    //Variables for settings
+    //Los Globals
     window.mainPageSortingMethod = "Newest";
+    window.currentTagFilter = "None";
 
     function toggleSetting(key, isOn) {
       if (key == "disable-particles") { //Disable particles
@@ -1659,13 +1908,17 @@
       { title: "Learn to Fly", img: "images/game-logos/learn-to-fly-logo.jpeg", link: "games/learn-to-fly", shortdescription: "A classic Flash game about a penguin who wants to 'fly'.", description: "Learn to Fly is a game about a penguin who tries to fly using ridiculous gadgets like hang gliders and rockets. Buy upgrades and new equipment, collect research funds, and explore the penguin's ultimate adventure!", tags: ["Strategy", "Business", "Idle"]},
       { title: "Learn to Fly 2", img: "images/game-logos/learn-2-fly-logo.jpeg", link: "games/learn-2-fly", shortdescription: "The sequel to the popular idle game Learn to Fly!", description: "Learn to Fly 2, also known as Learn 2 Fly, is about our penguin friend dying to destroy the iceberg that crushed his flying dreams. Even more tools and acessories than the first, use your beanbag penguin to destroy various obstacles and finally achieve your goal!", tags: ["Strategy", "Business", "Idle"]},
       { title: "OVO", img: "images/game-logos/ovo-logo.png", link: "games/ovo", shortdescription: "A classic, popular monochromic-themed platformer.", description: "OVO is a fast-paced parkour platformer where you leap, slide, and wall-jump through minimalist obstacle courses. Master precise timing, movement, mechanics, and more to beat each level and unlock new skins as you go!", tags: ["Platformer", "Skill"]},
-      { title: "Bloxorz", img: "images/game-logos/bloxorz-logo.jpg", link: "games/bloxorz", shortdescription: "Flip as a rectangular slab through many puzzling levels.", description: "Bloxorz is a puzzle game where you control a rectangular block and try to flip, roll, and slide it into a square hole. Navigate tricky platforms, switches, and bridges across dozens of brain-teasing levels. This game will be sure to test your logic!", tags: ["Puzzle", "Simple", "Strategy"]},
+      { title: "Bloxorz", img: "images/game-logos/bloxorz-logo.jpg", link: "games/bloxorz", shortdescription: "Flip as a rectangular slab through many puzzling levels.", description: "Bloxorz is a puzzle game where you control a rectangular block and try to flip, roll, and slide it into a square hole. Navigate tricky platforms, switches, and bridges across dozens of brain-teasing levels. This game will be sure to test your logic!", tags: ["Puzzle", "Casual", "Strategy"]},
       { title: "Run 3", img: "images/game-logos/run-3-logo.jpg", link: "games/run3", shortdescription: "A mega-popular third person runner game.", description: "Run 3 is an endless runner set in space where you guide a speedy alien through collapsing tunnels. Jump, rotate gravity, dodge gaps, and admire the beauty of space as the difficulty ramps up with every step!", tags: ["Action", "Racing", "Timing"]},
-      { title: "The Impossible Quiz", img: "images/game-logos/the-impossible-quiz-logo.png", link: "games/the-impossible-quiz", shortdescription: "An infamously difficult quiz game. Prepare for perplexation!", description: "Try out an extremely chaotic trivia game packed with tricky and sometimes unreasonable questions, puns, and surprises. Think outside the box, or lose all your lives trying! Will you rage-quit, or make it to the very end (without a guide)?", tags: ["Puzzle", "Simple"]},
+      { title: "The Impossible Quiz", img: "images/game-logos/the-impossible-quiz-logo.png", link: "games/the-impossible-quiz", shortdescription: "An infamously difficult quiz game. Prepare for perplexation!", description: "Try out an extremely chaotic trivia game packed with tricky and sometimes unreasonable questions, puns, and surprises. Think outside the box, or lose all your lives trying! Will you rage-quit, or make it to the very end (without a guide)?", tags: ["Puzzle", "Casual"]},
+      { title: "Grindcraft", img: "images/game-logos/grindcraft-logo.jpg", link: "games/grindcraft", shortdescription: "Minecraft, but turned into an idle game.", description: "Grindcraft is a  idle game inspired by Minecraft. Mine and kill mobs for resources, and then use those resources to increase your production. Afterwards, make increasingly complex crafts to climb up the crafting ladder!", tags: ["Idle", "Business"]},
+      { title: "Papa's Pizzeria", img: "images/game-logos/papas-pizzeria-logo.jpeg", link: "games/papas-pizzeria", shortdescription: "Play as a pizza chef and serve different customers!", description: "Papa's Pizzeria is the first installment in the Papa's series of cooking games. Papa's Pizzeria is all about time management and multitasking: you must prepare, bake, top, and serve mutliple pizzas while maintaining high customer satisfaction by doing it as quick as possible!", tags: ["Business", "Strategy", "Casual"]},
+      { title: "Subway Surfers", img: "images/game-logos/subway-surfers-logo.jpeg", link: "games/subway-surfers", shortdescription: "Dodge trains and slide under barriers!", description: "Subway Surfers is a well-known endless runner game. You play as Jake, a grafitti artist, who is trying to evade capture from the inspector. There are trains, traffic barriers, and other obstacles that you have to avoid. Use your hoverboard to increase your speed and protection!", tags: ["Action", "Timing"]},
+      { title: "Awesome Tanks 2", img: "images/game-logos/awesome-tanks-2-logo.jpeg", link: "games/awesome-tanks-2", shortdescription: "Defeat enemies, collect coins, and upgrade your tank.", description: "Awesome Tanks 2 is a top-down shooter game. Control a tank and blast your way through 15 levels. Upgrade your tank's stats and weapons to take on increasingly more powerful enemy tanks! Pickup powerups from destroying crates, and beware of the exploding barrels.", tags: ["Shooter", "Strategy", "Action"]},
     ]
 
 
-    const reloadUponFullscreenGames = ["Slope", "Retro Bowl"];
+    const reloadUponFullscreenGames = ["Slope", "Retro Bowl", "Awesome Tanks 2"];
 
 
    //Browse Section Filling-In
@@ -1732,6 +1985,44 @@
         newGamesContainerTwo.appendChild(newGamesGame);
       }
     });
+
+
+    //Random Games section
+    function generateRandomGames() {
+    var allGamesListRandomFour = [...allGamesList].slice() //Picks 4 random games
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 4);
+    const randomGamesContainerOne = document.getElementById("home-section-random-games-container1");
+    const randomGamesContainerTwo = document.getElementById("home-section-random-games-container2");
+    allGamesListRandomFour.forEach((game, iteration) => {
+      var randomGamesGame = document.createElement("div");
+      randomGamesGame.onclick = function() {
+        startGamePage(game.link, game.img, game.title, game.description, game.tags);
+      };
+      randomGamesGame.innerHTML = `
+          <div class="homeSectionGameButtons" style="--effect-color: white;"> <!--Changes color of swirly effect-->
+            <img src="${game.img}"/>
+            <div class="homeSectionGameButtonText">
+              <span class="homeSectionGameButtonTitle">${game.title}</span>
+            </div>
+          </div>
+      `;
+      if (iteration <= 1) {
+        randomGamesContainerOne.appendChild(randomGamesGame);
+      } else {
+        randomGamesContainerTwo.appendChild(randomGamesGame);
+      }
+    });
+  }
+  generateRandomGames();
+
+    document.getElementById("home-section-random-games-generate-button").addEventListener("click", function() {
+      document.getElementById("home-section-random-games-container1").innerHTML = "";
+      document.getElementById("home-section-random-games-container2").innerHTML = "";
+      generateRandomGames();
+      
+    });
+
 
 
 
@@ -2024,7 +2315,7 @@
           <img src="${game.img}" alt="${game.title}">
           <span>${game.title}</span>
         `;
-        // On click, show alert with title and image link
+        // Open game
         resultDiv.onclick = () => {
           startGamePage(game.link, game.img, game.title, game.description, game.tags);
         };
@@ -2041,6 +2332,8 @@
 
 
     //Sorting Games
+    window.currentGamesOnPage = allGamesList.slice(); //ONLY the current games on the page, initially created for sort/tag search conflict
+
     if (localStorage.getItem("savedSortingMethod") === null) { //If value is nonexistent than sets it to default
       localStorage.setItem("savedSortingMethod", "Newest");
     }
@@ -2051,9 +2344,22 @@
     }
 
     selectSort(mainPageSortingMethod);
-
-
     document.getElementById("main-page-sorting-method-text").innerText = mainPageSortingMethod;
+
+    //Individual sort function, sorts ANY list. This is because it was conflicting with the search by tag
+    function sortGames(list, method) {
+      if (method === "Oldest") {
+        return list.slice();
+      }
+      if (method === "Newest") {
+        return list.slice().reverse();
+      }
+      if (method === "A-Z") { 
+        return list.slice().sort((a, b) => a.title.localeCompare(b.title));
+      }
+      return list;
+    }
+
 
     function toggleSortDropdown() {
       document.getElementById('sort-button-dropdown').classList.toggle('open');
@@ -2063,16 +2369,22 @@
       const allGames = document.getElementById("all-games");
       mainPageSortingMethod = method;
       document.getElementById("main-page-sorting-method-text").innerText = mainPageSortingMethod;
-      var editedGamesList = allGamesList.slice();
 
 
-      if (method === "Oldest") { //Method: Oldest First
-        var hello = "hello";
-      } else if (method === "Newest") { //Method: Newest First
-        editedGamesList = allGamesList.slice().reverse(); //Simply reverses allGamesList
-      } else if (method === "A-Z") { //Method: A-Z Sort
-        editedGamesList = allGamesList.slice().sort((a, b) => a.title.localeCompare(b.title));
-      };
+      //if (method === "Oldest") { //Method: Oldest First
+        //var hello = "hello";
+      //} else if (method === "Newest") { //Method: Newest First
+        //editedGamesList = allGamesList.slice().reverse(); //Simply reverses allGamesList
+      //} else if (method === "A-Z") { //Method: A-Z Sort
+        //editedGamesList = allGamesList.slice().sort((a, b) => a.title.localeCompare(b.title));
+      //};
+
+      if (method === "A-Z") { //min-content doesn't really like it when there's a dash, so this will fix the width of the
+        document.getElementById("main-page-sort-button").style.width = "9vw"; //sort button so that it can display it properly.
+      } else {
+        document.getElementById("main-page-sort-button").style.width = "min-content";
+      }
+      var editedGamesList = sortGames(currentGamesOnPage, method);
 
 
       allGames.innerHTML = "";
@@ -2122,6 +2434,87 @@
         dropdown.classList.remove('open');
       }
     });
+
+
+
+
+
+    //Search By Tag (mostly copy-paste from sorting games)
+    function toggleSearchByTagDropdown() {
+      document.getElementById('search-by-tag-dropdown').classList.toggle('open');
+    }
+
+    function compileTagFilteredGames(tag) { //Returns a new array of all the games that fit a tag
+      const lower = tag.toLowerCase();
+      return allGamesList.filter(game =>
+      game.tags.some(t => t.toLowerCase() === lower)
+    );
+
+    document.getElementById("search-by-tag-text").innerText = currentTagFilter;
+
+    }
+    function searchByTag(tag) {
+      document.getElementById('search-by-tag-dropdown').classList.remove('open');
+      const allGames = document.getElementById("all-games");
+      currentTagFilter = tag;
+      document.getElementById("search-by-tag-text").innerText = currentTagFilter;
+      var editedGamesList = compileTagFilteredGames(tag); //Creates an array with just the games that fit the tag (the argument)
+      if (tag === "None") {
+        editedGamesList = allGamesList;
+      }
+      if (tag === "Open-World") {
+        document.getElementById("search-by-tag-button").style.width = "13vw";
+      } else {
+        document.getElementById("search-by-tag-button").style.width = "min-content";
+      }
+      editedGamesList = sortGames(editedGamesList, mainPageSortingMethod);
+      currentGamesOnPage = editedGamesList.slice().reverse(); //for some reason I need to use .reverse() or else the newest and oldest sorting gets mixed up
+
+      //All the code below is exact copy from sort, so it is collapsed a little
+      allGames.innerHTML = "";
+      const newGames = allGamesList.slice().reverse().slice(0, 4).map(game => game.title);
+      editedGamesList.forEach((gameInfo) => {
+        let newGameButton = document.createElement("button");
+        newGameButton.onclick = function() {
+          startGamePage(gameInfo.link, gameInfo.img, gameInfo.title, gameInfo.description, gameInfo.tags)
+        }
+        if (newGames.includes(gameInfo.title)) { //If game is new
+          newGameButton.innerHTML = `
+          <div class="gameButtonNewTag">New!</div>
+          <img src="${gameInfo.img}"/>
+          <div class="gameButtonText">
+            <h3 class="gameButtonTitle">${gameInfo.title}</h3>
+            <p>${gameInfo.shortdescription}</p>
+          </div>
+        `;
+        } else {
+          newGameButton.innerHTML = `
+            <img src="${gameInfo.img}"/>
+            <div class="gameButtonText">
+              <h3 class="gameButtonTitle">${gameInfo.title}</h3>
+              <p>${gameInfo.shortdescription}</p>
+            </div>
+          `;
+        }
+        newGameButton.classList.add("gameButton");
+        allGames.appendChild(newGameButton);
+      });
+      //selectSort(mainPageSortingMethod);
+      useMainPageSearch();
+      autoAdjustGameTitleSize();
+    }
+
+    document.addEventListener('click', function(event) {
+      const dropdown = document.getElementById('search-by-tag-dropdown');
+      if (!dropdown.contains(event.target)) {
+        dropdown.classList.remove('open');
+      }
+    });
+
+
+
+
+
 
 
 
@@ -2214,6 +2607,96 @@
 
 
     // Settings loader has been moved to top
+
+
+    // What's New Popup
+    const javaWhatsNewButton = document.getElementById("main-header-whats-new-button");
+    const popupOverlay = document.getElementById("whats-new-popup-overlay");
+
+    const javaWhatsNewPopupPage = Array.from(document.querySelectorAll(".whatsNewPopupPage"));
+    const whatsNewDotContainer = document.querySelector(".whatsNewPopupDotContainer");
+    const javaWhatsNewPrev = document.getElementById("whats-new-popup-previous-button");
+    const javaWhatsNewNext = document.getElementById("whats-new-popup-next-button");
+    const javaWhatsNewConfirmButton = document.getElementById("whats-new-popup-confirm");
+    let currentPage = 0;
+    javaWhatsNewPrev.classList.toggle("disabled"); //Starts the left button faded
+
+    javaWhatsNewPopupPage.forEach((_, i) => { //Make dots
+      const dot = document.createElement("div");
+      dot.classList.add("whatsNewPopupDot");
+      if (i === 0) dot.classList.add("active");
+      whatsNewDotContainer.appendChild(dot);
+    });
+
+    const dots = Array.from(document.querySelectorAll(".whatsNewPopupDot")); //Idk what this does
+
+    javaWhatsNewButton.addEventListener("click", () => {
+      popupOverlay.style.display = "flex";
+    });
+
+
+    function updatePages() { //Updates page when left/right arrow click, or return to first page upon close
+      javaWhatsNewPopupPage.forEach((p, i) => p.classList.toggle("active", i === currentPage)); //Sets page to correct index or smth
+      dots.forEach((d, i) => d.classList.toggle("active", i === currentPage)); //Sets dot to correct index or smth
+
+      const lastPage = currentPage === javaWhatsNewPopupPage.length - 1;
+
+      javaWhatsNewConfirmButton.disabled = !lastPage;
+      javaWhatsNewConfirmButton.classList.toggle("enabled", lastPage); //Confirm button only activates on last page
+
+      javaWhatsNewPrev.classList.toggle("disabled", currentPage === 0); //Fading arrows (very cool)
+      javaWhatsNewNext.classList.toggle("disabled", lastPage);
+    }
+
+    //Left/right arrow code
+    javaWhatsNewNext.addEventListener("click", () => {
+      if (currentPage < javaWhatsNewPopupPage.length - 1) {
+        currentPage++;
+        updatePages();
+      }
+    });
+    javaWhatsNewPrev.addEventListener("click", () => {
+      if (currentPage > 0) {
+        currentPage--;
+        updatePages();
+      }
+    });
+
+    javaWhatsNewConfirmButton.addEventListener("click", () => { //Confirm button
+      if (!javaWhatsNewConfirmButton.disabled) {
+        popupOverlay.style.display = "none";
+        currentPage = 0;
+        updatePages();
+      }
+    });
+
+
+    // Shows popup upon opening website, doesn't show again UNTIL the update changes
+    //Moved site version variable to very top of script
+
+    function whatsNewGetSiteVersion() {
+      return {
+        savedVersion: localStorage.getItem("siteVersion"),
+        popupDismissed: localStorage.getItem("popupDismissed_" + SITE_VERSION)
+      };
+    }
+    const { savedVersion, popupDismissed } = whatsNewGetSiteVersion();
+
+    //Show popup logic
+    const shouldShow = savedVersion !== SITE_VERSION || popupDismissed !== "true";
+    if (shouldShow) {
+      setTimeout(() => {
+      popupOverlay.style.display = "flex";
+      }, 250); // delay before showing popup
+    }
+
+    javaWhatsNewConfirmButton.addEventListener("click", () => { //Close button
+      popupOverlay.style.display = "none";
+      localStorage.setItem("popupDismissed_" + SITE_VERSION, "true");
+      localStorage.setItem("siteVersion", SITE_VERSION);
+    });
+
+    document.getElementById("version-number-text").innerText = "Version " + SITE_VERSION;
 
 
 
@@ -2477,5 +2960,4 @@
 
   </script>
 </body>
-<!--BirdHub v2 Watermark 2025-->
 </html>
