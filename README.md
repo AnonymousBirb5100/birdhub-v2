@@ -4,6 +4,7 @@
 
 ## BirdHub V2
 BirdHub V2 is a web-based portal for online browser games. It is a remade-from-the-ground-up version of the [original BirdHub](https://github.com/AnonymousBirb5100/anonymousbirb5100.github.io). BirdHub V2 has a much sleeker design and more features while still retaining the intuivity of its predecessor.
+
 > [!IMPORTANT]
 > This website, along with this README, is still under heavy development. This README is subject to frequent changes!
 
@@ -23,3 +24,6 @@ BirdHub V2 is a web-based portal for online browser games. It is a remade-from-t
 | https://birdhubgames.vercel.app | Live |
 | https://bhubcentral.github.io | In Progress |
 | https://birbcade.pages.dev | In Progress |
+## License
+This project is protected and licensed under the [MIT License](https://github.com/AnonymousBirb5100/birdhub-v2/blob/master/LICENSE).  
+Forked games retain their original licenses and credit to their creators.
