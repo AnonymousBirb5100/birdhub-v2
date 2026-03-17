@@ -1,0 +1,77 @@
+   .betaPopup {
+      display: flex;
+      opacity: 0;
+      flex-direction: column;
+      width: 50vw;
+      height: 10vh;
+      background-color: rgba(0, 0, 0, 0.7);
+      position: fixed;
+      bottom: 0;
+      left: 25%;
+      margin-bottom: 2vw;
+      padding: 5px;
+      border-radius: 25px;
+      box-shadow: 0px 10px 5px black;
+      transition: opacity 1.5s ease-in;
+      animation: popupFadeIn 2s ease-in forwards 1s;
+      z-index: 9990;
+    }
+    @keyframes popupFadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+    .popupFadeOut {
+      animation: popupFadeOutAnimation 2s forwards;
+      pointer-events: none; /* Disable interaction during animation */
+    }
+
+    @keyframes popupFadeOutAnimation {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+
+    .betaPopupText {
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 1.7vw;
+      color: white;
+      margin: auto;
+      z-index: 9991;
+    }
+    .betaPopup button {
+      width: 10vw;
+      height: 7vh;
+      background-color: rgba(15, 205, 41, 0.9);
+      margin: auto;
+      margin-top: 5px;
+      border: 5px solid black;
+      border-radius: 10px;
+      font-size: 1.7vw;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      box-shadow: 0px 10px 5px black;
+      transition: 0.3s ease;
+      z-index: 9992;
+    }
+    .betaPopup button:hover {
+      transform: translateY(-5px);
+      background-color: rgb(18, 224, 45);
+    }
+    .betaPopupHider {
+      display: flex; 
+      align-items: center;
+      gap: 10px;
+      color: white;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 1vw;
+      transition: 0.3s ease;
+    }
+    .betaPopupHider:hover {
+      transform: translateY(-3px);
+    }
+    .betaPopupHider p {
+      margin-left: 5px;
+    }
