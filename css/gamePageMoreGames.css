@@ -1,0 +1,123 @@
+   /* Container for all game buttons */
+    .gamePageMoreGames {
+      display: flex;
+      flex-wrap: wrap;
+      position: absolute;
+      width: 25vw;
+      height: auto;
+      background-color: rgba(0, 0, 0, 0.6);
+      left: 0;
+      bottom: 1vw;
+      margin-top: 13vh;
+      margin-left: 4vw;
+      padding: 3vw;
+      gap: 3vw;
+      border-radius: 25px;
+      align-content: flex-start; /* Prevent vertical stretching */
+    }
+
+
+
+
+    /* Individual game button */
+    /* Repurposing the more games game buttons*/
+    .moreGamesGameButton {
+      flex: 0 0 9.5vw;  /* Allows aspect ratio to work properly and not anomolize(???) button */
+      aspect-ratio: 1 / 1; /* Keep it square */
+    }
+    .moreGamesGameButton, .homeSectionGameButtons {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      background-color: #fff;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    .moreGamesGameButton {
+      border: 3px solid black;
+    }
+    .homeSectionGameButtons {
+      width: 9vw;
+      height: 9vw;
+      margin: 1vw;
+    }
+    .moreGamesGameButton img, .homeSectionGameButtons img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 6px;
+      display: block;
+      z-index: 0;
+    }
+
+    .moreGamesGameButtonText, .homeSectionGameButtonText {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 0.5vw 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.7) 25%, transparent 100%);
+      color: white;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 1.6vw;
+      text-shadow: 0px 0px 3px black;
+      border-radius: 10px;
+      box-sizing: border-box;
+      z-index: 1;
+    }
+    .homeSectionGameButtonText {
+      font-size: 1.6vw;
+    }
+    /* Title text inside the overlay */
+    .moreGamesGameButtonTitle, .homeSectionGameButtonTitle {
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .moreGamesGameButton:hover .moreGamesGameButtonTitle, .homeSectionGameButtons:hover .homeSectionGameButtonTitle {
+      transform: translateY(-10px);
+    }
+    .moreGamesGameButton:hover {
+      transform: scale(1.1) translateY(-20px);
+      box-shadow: 0 0 8px rgb(0, 132, 255);
+    }
+    /* Separate hover effect */
+    .homeSectionGameButtons:hover {
+      transform: translateY(-10px);
+      box-shadow: 0px 20px 10px rgb(0, 191, 255);
+    }
+
+    .gamePageMoreGamesLabel {
+      margin: auto;
+      color: rgb(0, 132, 255);
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 2.5vw;
+      text-shadow: 0px 0px 10px rgb(0, 132, 255);
+      border-radius: 10px;
+      padding-bottom: 1.5vw;
+      border-bottom: 3px solid royalblue;
+    }
+    /* .gamePageMoreGamesShuffleButton {
+      color: white;
+      background-color: royalblue;
+      width: 90%;
+      height: 5vh;
+      font-size: 1.7vw;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      border: none;
+      border-radius: 25px;
+      text-shadow: 0px 0px 1px white;
+      box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.5);
+      transition: 0.3s ease;
+    }
+    .gamePageMoreGamesShuffleButton:hover {
+      transform: translateY(-10px);
+      text-shadow: 0px 0px 3px white;
+    } */
+
+    /*End Game Menu*/
