@@ -6,7 +6,24 @@
   <meta name="description" content="Welcome to the BirdHub! We hope you enjoy, learn, and have fun on our website.">
   <title>BirdHub | Online Browser Games</title>
   <link rel="shortcut icon" type="image/png" href="images/birdhub-logo.png">
-  <base href="https://anonymousbirb5100.github.io/birdhub-v2/">
+
+  <script>
+    // Changes <base> element when developing (only for devs)
+    const base = document.createElement("base");
+    if (location.protocol === "file:") {
+      base.href = "https://anonymousbirb5100.github.io/birdhub-v2/";
+    } else {
+      base.href = "./";
+    }
+    document.head.appendChild(base);
+  </script>
+
+  <!--External CSS-->
+  <link rel="stylesheet" href="css/betaPopup.css">
+  <link rel="stylesheet" href="css/gamePageMoreGames.css">
+  <link rel="stylesheet" href="css/universalAlert.css">
+
+
   <style>
 
     .html {
@@ -1041,129 +1058,8 @@
 
 
     /*Game Page More Games*/
-    /* Container for all game buttons */
-    .gamePageMoreGames {
-      display: flex;
-      flex-wrap: wrap;
-      position: absolute;
-      width: 25vw;
-      height: auto;
-      background-color: rgba(0, 0, 0, 0.6);
-      left: 0;
-      bottom: 1vw;
-      margin-top: 13vh;
-      margin-left: 4vw;
-      padding: 3vw;
-      gap: 3vw;
-      border-radius: 25px;
-      align-content: flex-start; /* Prevent vertical stretching */
-    }
-
-
-
-
-    /* Individual game button */
-    /* Repurposing the more games game buttons*/
-    .moreGamesGameButton {
-      flex: 0 0 9.5vw;  /* Allows aspect ratio to work properly and not anomolize(???) button */
-      aspect-ratio: 1 / 1; /* Keep it square */
-    }
-    .moreGamesGameButton, .homeSectionGameButtons {
-      position: relative;
-      overflow: hidden;
-      border-radius: 20px;
-      background-color: #fff;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-    .moreGamesGameButton {
-      border: 3px solid black;
-    }
-    .homeSectionGameButtons {
-      width: 9vw;
-      height: 9vw;
-      margin: 1vw;
-    }
-    .moreGamesGameButton img, .homeSectionGameButtons img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 6px;
-      display: block;
-      z-index: 0;
-    }
-
-    .moreGamesGameButtonText, .homeSectionGameButtonText {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      padding: 0.5vw 0;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.7) 25%, transparent 100%);
-      color: white;
-      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      font-size: 1.6vw;
-      text-shadow: 0px 0px 3px black;
-      border-radius: 10px;
-      box-sizing: border-box;
-      z-index: 1;
-    }
-    .homeSectionGameButtonText {
-      font-size: 1.6vw;
-    }
-    /* Title text inside the overlay */
-    .moreGamesGameButtonTitle, .homeSectionGameButtonTitle {
-      display: block;
-      transition: transform 0.3s ease;
-    }
-
-    .moreGamesGameButton:hover .moreGamesGameButtonTitle, .homeSectionGameButtons:hover .homeSectionGameButtonTitle {
-      transform: translateY(-10px);
-    }
-    .moreGamesGameButton:hover {
-      transform: scale(1.1) translateY(-20px);
-      box-shadow: 0 0 8px rgb(0, 132, 255);
-    }
-    /* Separate hover effect */
-    .homeSectionGameButtons:hover {
-      transform: translateY(-10px);
-      box-shadow: 0px 20px 10px rgb(0, 191, 255);
-    }
-
-    .gamePageMoreGamesLabel {
-      margin: auto;
-      color: rgb(0, 132, 255);
-      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      font-size: 2.5vw;
-      text-shadow: 0px 0px 10px rgb(0, 132, 255);
-      border-radius: 10px;
-      padding-bottom: 1.5vw;
-      border-bottom: 3px solid royalblue;
-    }
-    /* .gamePageMoreGamesShuffleButton {
-      color: white;
-      background-color: royalblue;
-      width: 90%;
-      height: 5vh;
-      font-size: 1.7vw;
-      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      border: none;
-      border-radius: 25px;
-      text-shadow: 0px 0px 1px white;
-      box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.5);
-      transition: 0.3s ease;
-    }
-    .gamePageMoreGamesShuffleButton:hover {
-      transform: translateY(-10px);
-      text-shadow: 0px 0px 3px white;
-    } */
-
-    /*End Game Menu*/
+    /*EXTERNALSOURCE*/
+    /*EXTERNALSOURCE*/
 
 
 
@@ -1171,136 +1067,13 @@
 
     /*Temporary Beta Popup*/
     /* CSS */
-    .betaPopup {
-      display: flex;
-      opacity: 0;
-      flex-direction: column;
-      width: 50vw;
-      height: 10vh;
-      background-color: rgba(0, 0, 0, 0.7);
-      position: fixed;
-      bottom: 0;
-      left: 25%;
-      margin-bottom: 2vw;
-      padding: 5px;
-      border-radius: 25px;
-      box-shadow: 0px 10px 5px black;
-      transition: opacity 1.5s ease-in;
-      animation: popupFadeIn 2s ease-in forwards 1s;
-      z-index: 9990;
-    }
-    @keyframes popupFadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-    .popupFadeOut {
-      animation: popupFadeOutAnimation 2s forwards;
-      pointer-events: none; /* Disable interaction during animation */
-    }
-
-    @keyframes popupFadeOutAnimation {
-      from {
-        opacity: 1;
-      }
-      to {
-        opacity: 0;
-      }
-    }
-
-    .betaPopupText {
-      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      font-size: 1.7vw;
-      color: white;
-      margin: auto;
-      z-index: 9991;
-    }
-    .betaPopup button {
-      width: 10vw;
-      height: 7vh;
-      background-color: rgba(15, 205, 41, 0.9);
-      margin: auto;
-      margin-top: 5px;
-      border: 5px solid black;
-      border-radius: 10px;
-      font-size: 1.7vw;
-      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      box-shadow: 0px 10px 5px black;
-      transition: 0.3s ease;
-      z-index: 9992;
-    }
-    .betaPopup button:hover {
-      transform: translateY(-5px);
-      background-color: rgb(18, 224, 45);
-    }
-    .betaPopupHider {
-      display: flex; 
-      align-items: center;
-      gap: 10px;
-      color: white;
-      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      font-size: 1vw;
-      transition: 0.3s ease;
-    }
-    .betaPopupHider:hover {
-      transform: translateY(-3px);
-    }
-    .betaPopupHider p {
-      margin-left: 5px;
-    }
+    /*EXTERNALSOURCE*/
+    /*EXTERNALSOURCE*/
 
     /*End Popup*/
-
-    /*Various Alerts*/
-    .alertBackground {
-      display: none;
-      position: fixed;
-      left: 0;
-      top: 0;
-      width: 101vw;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 10000;
-      transform: translateX(-1vw);
-    }
-    .alertBox {
-      display: flex;
-      flex-direction: column;
-      width: 30vw;
-      background-color: rgba(0, 0, 0, 0.6);
-      margin: auto;
-      padding: 1vw;
-      align-items: center;
-      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      border-radius: 25px;
-      box-shadow: 0px 5px 20px black;
-    }
-    .alertBox h1 {
-      color: white;
-      font-weight: normal;
-      font-size: 40px;
-      line-height: 0;
-      margin-top: 5vh;
-    }
-    .alertBox p {
-      color: white;
-    }
-    .alertBox button {
-      color: white;
-      background-color: rgba(0, 0, 0, 0.7);
-      border: 3px solid rgba(0, 132, 255);
-      width: 6vw;
-      height: 3vw;
-      margin: 1vw;
-      font-size: 1.5vw;
-      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      border-radius: 1vw;
-      transition: 0.3s ease;
-    }
-    .alertBox button:hover {
-      transform: translateY(-5px);
-      background-color: rgba(65, 105, 225, 0.7);
-    }
+    /* Alerts */
+    /*EXTERNALSOURCE*/
+    /*EXTERNALSOURCE*/
     .universalTooltipContainer {
     position: relative;
     display: flex;
@@ -1334,7 +1107,7 @@
       border-style: solid;
       border-color: rgba(0, 0, 0, 0.6) transparent transparent transparent;
     }
-    }
+  }
 
 
 
@@ -1491,13 +1264,11 @@
 
     <div class="whatsNewPopupPageContainer">
       <div class="whatsNewPopupPage active">
-        <div style="display:flex;justify-content:center;padding:0;margin:0;"><p class="whatsNewPopupPageTitle">What's New This Update</p></div>
-        • This popup :/</br>
-        • 4 new games!</br>
-        • Added tags to games, you can now search for Platformer, Skill, Puzzle, etc. related games.</br>
-        • Don't know what game to play next? New section in the "Home" section: random games. It displays 4 randomly-picked games, along
-        with a button to pick 4 new randomly-picked games.</br></br>
-        What's (hopefully) coming next major update:</br>
+        <div style="display:flex;justify-content:center;padding:0;margin:0;"><p class="whatsNewPopupPageTitle">1.9.51: What's New This Update</p></div>
+        • Changed the way BirdHub fetches files from the Github repository. 
+        This was done because Github was blocked in the developers' school. (don't worry, this is an improvement!)</br>
+        • Added 4 new games. Check the out!</br>
+        Don't forget what's coming in 1.9.6:</br>
         • Tab cloaking options in the settings (along with an about:blank shortcut in the main header)</br>
         • New Section: BirdHub V2 Emulator -> an emulator that can run retro games, embedded in the website</br>
         • New Section: BirdHub Originals -> software and games developed by our own dev team!</br>
@@ -1641,6 +1412,7 @@
             <div onclick="searchByTag('Physics')">Physics</div>
             <div onclick="searchByTag('Platformer')">Platformer</div>
             <div onclick="searchByTag('Puzzle')">Puzzle</div>
+            <div onclick="searchByTag('Racing')">Racing</div>
             <div onclick="searchByTag('Sandbox')">Sandbox</div>
             <div onclick="searchByTag('Shooter')">Shooter</div>
             <div onclick="searchByTag('Skill')">Skill</div>
@@ -1682,16 +1454,10 @@
         <span style="font-weight: normal; text-shadow: none;">Lead Developer</span></div>
 
         <div class="aboutSectionCreditsNames">GJ Hacked, shartshrek: 
-        <span style="text-shadow: none;">Co-Developers</span></div></br>
+        <span style="text-shadow: none;">Co-Developers</span></div>
 
         <div class="aboutSectionCreditsNames">ArticlesUponArticles, Charels: 
-        <span style="text-shadow: none;">Playtesters</span></div>
-
-        <div class="aboutSectionCreditsNames">Orple, Jeri_dotco: 
-        <span style="text-shadow: none;">Contributors</span></div>
-
-        <div class="aboutSectionCreditsNames">Prethi, ZZ, CC, Ache: 
-        <span style="text-shadow: none;">Support</span></div>
+        <span style="text-shadow: none;">Testers</span></div>
       </div>
 
 
@@ -1821,10 +1587,11 @@
 
 
   <!--<script src="hostfinder.js"></script> <!--External URL detector-->
-
+  <!--Load extneral JS-->
+  <script src="scripts/betapopup.js"></script>
   <script>
 
-    const SITE_VERSION = "1.9.5"; // Version constant
+    const SITE_VERSION = "1.9.51"; // Version constant
     
     // Load saved settings
     document.querySelectorAll('.settingsToggle').forEach(toggle => {
@@ -1915,10 +1682,14 @@
       { title: "Papa's Pizzeria", img: "images/game-logos/papas-pizzeria-logo.jpeg", link: "games/papas-pizzeria", shortdescription: "Play as a pizza chef and serve different customers!", description: "Papa's Pizzeria is the first installment in the Papa's series of cooking games. Papa's Pizzeria is all about time management and multitasking: you must prepare, bake, top, and serve mutliple pizzas while maintaining high customer satisfaction by doing it as quick as possible!", tags: ["Business", "Strategy", "Casual"]},
       { title: "Subway Surfers", img: "images/game-logos/subway-surfers-logo.jpeg", link: "games/subway-surfers", shortdescription: "Dodge trains and slide under barriers!", description: "Subway Surfers is a well-known endless runner game. You play as Jake, a grafitti artist, who is trying to evade capture from the inspector. There are trains, traffic barriers, and other obstacles that you have to avoid. Use your hoverboard to increase your speed and protection!", tags: ["Action", "Timing"]},
       { title: "Awesome Tanks 2", img: "images/game-logos/awesome-tanks-2-logo.jpeg", link: "games/awesome-tanks-2", shortdescription: "Defeat enemies, collect coins, and upgrade your tank.", description: "Awesome Tanks 2 is a top-down shooter game. Control a tank and blast your way through 15 levels. Upgrade your tank's stats and weapons to take on increasingly more powerful enemy tanks! Pickup powerups from destroying crates, and beware of the exploding barrels.", tags: ["Shooter", "Strategy", "Action"]},
+      { title: "Bitlife", img: "images/game-logos/bitlife-logo.png", link: "games/bitlife", shortdescription: "Bitlife is a semi-realistic life simulator. Live it how you want!", description: "BitLife is a life simulation game where every choice shapes your character's entire story. Study hard, cause chaos, chase fame, or live quietly. The decision tree grows as you age. See how wild, successful, or disastrous your fake life becomes!", tags: ["Sandbox", "Casual"]},
+      { title: "A Dance of Fire and Ice", img: "images/game-logos/adofai-logo.jpg", link: "games/a-dance-of-fire-and-ice", shortdescription: "A rhythm game with a unique path-following concept.", description: "A Dance of Fire and Ice is a rhythm game where you guide two orbiting balls along twisting tracks by tapping to the beat. Stay focused as the beat speeds up and patterns get trickier. Easy to learn, hard to master.", tags: ["Music", "Timing", "Skill"]},
+      { title: "Bloons TD 3", img: "images/game-logos/bloons-td-3-logo.jpg", link: "games/bloons-td-3", shortdescription: "The third game in the Bloons TD series.", description: "Bloons Tower Defense 3 follows the classic Bloons TD game style: A tower defense game where you place monkeys, buildings, traps to pop waves of incoming balloons. Upgrade your defenses and survive increasingly challenging rounds as the balloons get faster and tougher.", tags: ["Strategy", "Casual"]},
+      { title: "Duck Life 4", img: "images/game-logos/duck-life-4-logo.jpg", link: "games/duck-life-4", shortdescription: "Train a duck to become a racing champion. Yes, a duck.", description: "Duck Life 4 is a hilarious simulation-esque game where you train a duck to compete in racing tournaments. Level up your duck in four skills: running, flying, swimming, and climbing, so your duck can compete in tournaments to advance throughout the game.", tags: ["Casual", "Racing"]},
     ]
 
 
-    const reloadUponFullscreenGames = ["Slope", "Retro Bowl", "Awesome Tanks 2"];
+    const reloadUponFullscreenGames = ["Slope", "Retro Bowl", "Awesome Tanks 2", "Duck Life 4"];
 
 
    //Browse Section Filling-In
@@ -2041,29 +1812,8 @@
     autoAdjustGameTitleSize();
 
     //betapopup
-    const javaBetaPopup = document.getElementById("beta-popup");
-    const javaPopupUnderstandButton = document.getElementById("beta-popup-understand-button");
-    const javaBetaPopupCheckbox = document.getElementById("beta-popup-checkbox");
-
-    window.onload = function() {
-      //localStorage.setItem("betaPopupShowAgain", "false"); //-> reset showagain variable to false
-      //alert(localStorage.getItem("betaPopupShowAgain")); //-> test for bugs
-      const javaBetaPopupShowAgain = localStorage.getItem("betaPopupShowAgain");
-      if (javaBetaPopupShowAgain === "true") {
-        javaBetaPopup.style.display = "none";
-      }
-    }
-
-    javaPopupUnderstandButton.addEventListener("click", () => {
-      if (javaBetaPopupCheckbox.checked) {
-        localStorage.setItem("betaPopupShowAgain", "true");
-      }
-      javaBetaPopup.classList.add("popupFadeOut");
-    });
-
-    javaPopupUnderstandButton.addEventListener("animationend", () => {
-      javaBetaPopup.style.display = "none";
-    });
+    //EXTERNALSOURCE
+    //EXTERNALSOURCE
 
 
 
@@ -2711,21 +2461,23 @@
     //game menu
     function getRandomTip() { //well, get random tip
     const tips = [ //tip list
-        //"BirdHub has 6 games for you to try out!",
+        "BirdHub has " + allGamesList.length + " games for you to try out!",
         "TIP: Click the 3-lined button in the top-left of the Main page to show the Main page header menu.",
         "Hey, how's your day?",
         "BirdHub gets regular updates with new games and the occasional new web feature.",
         "TIP: Use the search bar on top of the BROWSE section or in the game header to find your games quickly.",
         "TIP: Check out the Settings (available in the header menu on the Main and Game pages) to customize your experience and more.",
         //"Found a bug or glitch? Click the Report button in the shortcut menu.",
-        "If you're tired, take a break and get some sun."
+        "If you're tired, take a break and get some sun.",
+        "Dude, go outside.",
+        "TIP: Most buttons have a tooltip that appears when you hover over it for more info about the button.",
     ];
     
     return tips[Math.floor(Math.random() * tips.length)];
     }
 
 
-    // Exterminates bg when iframe loads by removing from DOM
+    //Exterminates bg when iframe loads by removing from DOM
     gamePageIframe.onload = function() {
       const loadingScreen = document.getElementById("loading-screen");
       loadingScreen.remove(); // Completely deletes the element
@@ -2870,7 +2622,7 @@
         const javaAlert = document.getElementById("alert");
         const javaAlertText = document.getElementById("alert-text");
         javaAlert.style.display = "flex";
-        javaAlertText.innerText = "Due to the design of this game, it needs to reload in order to fullscreen properly. Please visit the Settings for more information.";
+        javaAlertText.innerText = "Due to the design of this game, it needs to reload in order to fullscreen properly. Would you like to restart the game to enter fullscreen mode?";
       } else {
         enterFullscreen();
       }
