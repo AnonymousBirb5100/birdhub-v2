@@ -1,0 +1,8 @@
+{
+  "static": {
+    "directory": ".",
+    "routes": {
+      "/games/*": { "file": "/games/$1" }
+    }
+  }
+}
