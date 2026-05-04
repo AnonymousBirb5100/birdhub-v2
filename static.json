@@ -1,0 +1,9 @@
+{
+  "static": {
+    "directory": ".",
+    "routes": {
+      "/public/:game": { "file": "/public/:game/index.html" },
+      "/public/:game/*": { "file": "/public/:game/$1" }
+    }
+  }
+}
