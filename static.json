@@ -1,0 +1,6 @@
+{
+  "routes": {
+    "/games/:game": { "file": "/games/:game/index.html" },
+    "/games/:game/*": { "file": "/games/:game/$1" }
+  }
+}
