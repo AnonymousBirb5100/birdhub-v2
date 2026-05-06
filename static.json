@@ -1,6 +1,5 @@
 {
-  "routes": {
-    "/games/:game": { "file": "/games/:game/index.html" },
-    "/games/:game/*": { "file": "/games/:game/$1" }
-  }
+  "routes": [
+    { "src": ".*", "dest": "/index.html" }
+  ]
 }
