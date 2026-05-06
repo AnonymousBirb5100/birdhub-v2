@@ -1,6 +1,0 @@
-{
-  "routes": {
-    "/slope": { "file": "/slope/index.html" },
-    "/slope/*": { "file": "/slope/$1" }
-  }
-}
